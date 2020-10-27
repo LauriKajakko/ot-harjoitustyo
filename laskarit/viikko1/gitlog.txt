@@ -1,0 +1,96 @@
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 12:01:26 2020 +0200
+
+    harjoittelua done
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 160b5911cb604eda80590b6e1d649bdd5245300c
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 11:58:56 2020 +0200
+
+    harjoittelua lisätty filet
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 472bef47ce5cd7727aae3ced34e5db3e79f69e99
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 10:04:49 2020 +0200
+
+     add -p
+
+ eka.txt    | 11 +++++++++--
+ kolmas.txt | 22 ++++++++++++++++++++++
+ 2 files changed, 31 insertions(+), 2 deletions(-)
+
+commit 79cc2514ed6fd76395f2c5c5eb470a88478f4970
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 10:01:08 2020 +0200
+
+    uudelleennimentä
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 48f5c6610518a0bd66687f40b2467f5c5607c2ad
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 09:59:46 2020 +0200
+
+    toisen poisto
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 536a5c9439948b43a7776fa6af149493177f277e
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 09:55:52 2020 +0200
+
+    tekstin poisto ja lisäys
+
+ tiedosto.txt | 28 ++++++++++++++++++++++------
+ 1 file changed, 22 insertions(+), 6 deletions(-)
+
+commit 0c4ecc2e9749560251611338f43aa579d40ee141
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 09:54:32 2020 +0200
+
+    paljon tekstiä
+
+ tiedosto.txt | 31 ++++++++++++++++++++++++++++++-
+ 1 file changed, 30 insertions(+), 1 deletion(-)
+
+commit 246fd69fa68c1a42b63a27d2da92d7531d7a0224
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 09:50:19 2020 +0200
+
+    stuff ja jokin tiedosto
+
+ stuff/jokintiedosto | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 17357a53da3f02ce3a74589876964c665aac111d
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 09:48:44 2020 +0200
+
+    toisen ja kolmannen muutos
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit 5333c30fd53afed4145cc3c9a185d4e2e5dc444a
+Author: LauriKajakko <kajakko.lauri@gmail.com>
+Date:   Tue Oct 27 09:47:45 2020 +0200
+
+    kolmannen lisäys
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit aed00c925218333cf9c0fea961730b6718476107
+Author: LauriKajakko <
