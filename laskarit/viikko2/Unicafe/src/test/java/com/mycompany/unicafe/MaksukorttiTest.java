@@ -39,6 +39,7 @@ public class MaksukorttiTest {
     public void saldoVaheneeOtettaessa() {
         kortti.otaRahaa(500);
         assertEquals(500, kortti.saldo());
+        char lol = 0x63;
     }
     
     @Test
