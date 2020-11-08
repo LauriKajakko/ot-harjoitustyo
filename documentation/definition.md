@@ -23,6 +23,13 @@ Two kinds of users: Employers and employees
     * these will be marked as "not clocked" for the employer
 
 
+## UI plan
+
+Employer | Employee
+:-------------------------:|:-------------------------:
+<img src="https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/employer.jpg"  width="250"/> | <img src="https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/employee.jpg" width="290"/>
+
+
 ## Scalability
 
 After the core is done features that can be implemented:
