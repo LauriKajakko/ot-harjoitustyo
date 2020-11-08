@@ -14,3 +14,6 @@
 
 __bold__ *italic* jes jes
 
+### Week 2
+[Week 2](https://github.com/LauriKajakko/ot-harjoitustyo/tree/main/laskarit/viikko2)
+
