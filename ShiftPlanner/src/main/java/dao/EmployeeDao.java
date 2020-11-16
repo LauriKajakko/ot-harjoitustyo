@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class EmployeeDao {
 
+    //test.db why isn't this working
+    //sqlite> CREATE TABLE Employees (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, role TEXT);
+    //sqlite> INSERT INTO Employees (firstname, lastname, role) VALUES ('lauri', 'kajakko', 'ceo');
+
     private Connection db;
     private Statement s;
     private PreparedStatement p;

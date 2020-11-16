@@ -30,11 +30,11 @@ public class EmployeeViewController implements Initializable {
                 list.add(employee.getFirstName() + " " + employee.getLastName());
 
         } catch (SQLException throwable) {
-            list.addAll("employee1", "employee2", "employee3");
+            System.out.println("database error \n there is probably no database or sum wrong wit it");
             throwable.printStackTrace();
         }
 
-        if(choiceBox!=null) choiceBox.setItems(list);
+        choiceBox.setItems(list);
     }
 
 }
