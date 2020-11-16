@@ -15,11 +15,24 @@ public class EmployeeDao {
         this.db=db;
     }
 
-    public ArrayList<Employee>  getAll() throws SQLException{
+    public ArrayList<Employee>  getAll() throws SQLException {
         p = db.prepareStatement("SELECT * FROM Employees");
         ResultSet r = p.executeQuery();
-        return new ArrayList<>();
 
+        ArrayList<Employee> employees = new ArrayList<>();
+        while(r.next())
+            employees.add(new Employee(r.getString("firstname"), r.getString("lastname"), r.getString("role")));
+
+        return employees;
+
+    }
+
+    public void addNew(Employee employee) throws SQLException {
+        p = db.prepareStatement("INSERT INTO Employees (firstname, lastname, role) VALUES (?,?,?)");
+        p.setString(1, employee.getFirstName());
+        p.setString(2, employee.getLastName());
+        p.setString(3, employee.getRole());
+        p.executeUpdate();
     }
 
 }
