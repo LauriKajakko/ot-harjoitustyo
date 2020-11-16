@@ -12,34 +12,21 @@ Application for managing employees and work shifts.
 
 [Hour Report](https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/HourReport.md)
 
-## Komentorivitoiminnot
+## Command Line
 
-### Testaus
-
-Testit suoritetaan komennolla. Testit luovat tietokannan "test.db".
+### Testing
 
 ```
 mvn test
 ```
 
-Testikattavuusraportti luodaan komennolla
-
 ```
 mvn jacoco:report
 ```
 
-Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto _target/site/jacoco/index.html_
-
-
-### JavaDoc
-
-JavaDoc voidaan luoda komennolla
-
 ```
 mvn javadoc:javadoc
 ```
-
-JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/index.html_
 
 ### Checkstyle
 
@@ -47,7 +34,6 @@ JavaDocia voi tarkastella avaamalla selaimella tiedosto _target/site/apidocs/ind
  mvn jxr:jxr checkstyle:checkstyle
 ```
 
-Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto _target/site/checkstyle.html_
 
 
 
