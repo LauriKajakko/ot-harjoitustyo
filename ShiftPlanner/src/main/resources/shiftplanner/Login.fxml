@@ -18,6 +18,8 @@
 
    <TextField
            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+   <ChoiceBox
    </VBox>
    <VBox>
 
