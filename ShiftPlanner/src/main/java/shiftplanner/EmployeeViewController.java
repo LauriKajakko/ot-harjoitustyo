@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -17,8 +16,6 @@ public class EmployeeViewController implements Initializable {
 
     @FXML
     public ChoiceBox<String> choiceBox;
-    public TextField firstName;
-    public TextField lastName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

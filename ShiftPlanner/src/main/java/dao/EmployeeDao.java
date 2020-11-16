@@ -7,19 +7,38 @@ import java.util.ArrayList;
 
 public class EmployeeDao {
 
-    //test.db why isn't this working
-    //sqlite> CREATE TABLE Employees (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, role TEXT);
-    //sqlite> INSERT INTO Employees (firstname, lastname, role) VALUES ('lauri', 'kajakko', 'ceo');
 
     private Connection db;
     private Statement s;
     private PreparedStatement p;
 
+    /**
+     *
+     * Constructor
+     *
+     * @throws SQLException
+     */
     public EmployeeDao() throws SQLException {
-        Connection db = DriverManager.getConnection("jdbc:sqlite:test.db");
+        Connection db = DriverManager.getConnection("jdbc:sqlite:dev.db");
         this.db = db;
     }
 
+    /**
+     *
+     * Constructor for testing
+     *
+     * @param db Test Database connection
+     * @throws SQLException
+     */
+    public EmployeeDao(Connection db) throws SQLException {
+        this.db = db;
+    }
+
+    /**
+     *
+     * @return all employees in database
+     * @throws SQLException
+     */
     public ArrayList<Employee>  getAll() throws SQLException {
         p = db.prepareStatement("SELECT * FROM Employees");
         ResultSet r = p.executeQuery();
@@ -31,6 +50,13 @@ public class EmployeeDao {
         return employees;
     }
 
+    /**
+     *
+     * Adds employee to database
+     *
+     * @param employee employee to be added
+     * @throws SQLException
+     */
     public void addNew(Employee employee) throws SQLException {
         p = db.prepareStatement("INSERT INTO Employees (firstname, lastname, role) VALUES (?,?,?)");
         p.setString(1, employee.getFirstName());
