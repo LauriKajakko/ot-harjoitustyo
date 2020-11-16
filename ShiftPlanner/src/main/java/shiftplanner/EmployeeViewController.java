@@ -1,5 +1,7 @@
 package shiftplanner;
 
+import dao.EmployeeDao;
+import domain.Employee;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class EmployeeViewController implements Initializable {
@@ -20,7 +23,17 @@ public class EmployeeViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ObservableList<String> list = FXCollections.observableArrayList();
-        list.addAll("employee1", "employee2", "employee3");
+
+        try {
+            EmployeeDao employeeDao = new EmployeeDao();
+            for (Employee employee: employeeDao.getAll())
+                list.add(employee.getFirstName() + " " + employee.getLastName());
+
+        } catch (SQLException throwable) {
+            list.addAll("employee1", "employee2", "employee3");
+            throwable.printStackTrace();
+        }
+
         if(choiceBox!=null) choiceBox.setItems(list);
     }
 

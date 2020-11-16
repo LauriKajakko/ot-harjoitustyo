@@ -11,8 +11,9 @@ public class EmployeeDao {
     private Statement s;
     private PreparedStatement p;
 
-    public EmployeeDao(Connection db) throws SQLException {
-        this.db=db;
+    public EmployeeDao() throws SQLException {
+        Connection db = DriverManager.getConnection("jdbc:sqlite:test.db");
+        this.db = db;
     }
 
     public ArrayList<Employee>  getAll() throws SQLException {
@@ -24,7 +25,6 @@ public class EmployeeDao {
             employees.add(new Employee(r.getString("firstname"), r.getString("lastname"), r.getString("role")));
 
         return employees;
-
     }
 
     public void addNew(Employee employee) throws SQLException {
