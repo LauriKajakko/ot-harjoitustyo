@@ -13,7 +13,6 @@ public class EmployeeDao {
     private PreparedStatement p;
 
     /**
-     *
      * Constructor
      *
      * @throws SQLException
@@ -24,7 +23,6 @@ public class EmployeeDao {
     }
 
     /**
-     *
      * Constructor for testing
      *
      * @param db Test Database connection
