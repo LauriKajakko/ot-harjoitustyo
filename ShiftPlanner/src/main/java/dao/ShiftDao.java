@@ -1,5 +1,6 @@
 package dao;
 
+import domain.Employee;
 import domain.Shift;
 
 import java.sql.*;
@@ -29,6 +30,19 @@ public class ShiftDao {
      */
     public ShiftDao(Connection db) throws SQLException {
         this.db = db;
+    }
+
+    public ArrayList<Shift> getShiftsByEmployee(Employee employee) throws SQLException{
+        ArrayList<Shift> shifts = new ArrayList<>();
+        p = db.prepareStatement("SELECT fromtime, totime, date FROM Shifts WHERE employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?))");
+        p.setString(1, employee.getFirstName());
+        p.setString(2, employee.getLastName());
+        ResultSet r = p.executeQuery();
+        while (r.next())
+            shifts.add(new Shift(r.getString("fromtime"), r.getString("totime"), r.getString("date"), employee));
+
+        return shifts;
+
     }
 
     public void addShift(Shift shift) throws SQLException {

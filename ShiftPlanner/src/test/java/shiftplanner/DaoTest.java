@@ -4,7 +4,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
 import dao.EmployeeDao;
+import dao.ShiftDao;
 import domain.Employee;
+import domain.Shift;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -68,9 +70,24 @@ public class DaoTest {
         assertEquals(newEmployee.getFirstName() ,dao.getAll().get(2).getFirstName());
     }
 
+    @Test
+    public void rightShiftsAreReturnedByEmployee() throws SQLException {
+        ShiftDao dao = new ShiftDao(testdb);
+        EmployeeDao employeeDao = new EmployeeDao();
+        Employee e = employeeDao.getAll().get(0);
+
+        ArrayList<Shift> shifts = dao.getShiftsByEmployee(e);
+        assertEquals("08:00:00", shifts.get(0).getFrom());
+        assertEquals("16:00:00", shifts.get(0).getTo());
+        assertEquals("18.11.2020", shifts.get(0).getDate());
+    }
+
+    //TODO addshift test
+
     @After
     public void tearDown() throws SQLException {
         s.execute("DROP TABLE Employees");
+        s.execute("DROP TABLE Shifts");
     }
 
 }
