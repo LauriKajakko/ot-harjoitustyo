@@ -32,6 +32,12 @@ public class ShiftDao {
         this.db = db;
     }
 
+    /**
+     *
+     * @param employee whose shifts are retrieved form database
+     * @return employee's shifts as ann ArrayList
+     * @throws SQLException
+     */
     public ArrayList<Shift> getShiftsByEmployee(Employee employee) throws SQLException{
         ArrayList<Shift> shifts = new ArrayList<>();
         p = db.prepareStatement("SELECT fromtime, totime, date FROM Shifts WHERE employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?))");
@@ -45,6 +51,11 @@ public class ShiftDao {
 
     }
 
+    /**
+     *
+     * @param shift shift to add to database
+     * @throws SQLException
+     */
     public void addShift(Shift shift) throws SQLException {
         p = db.prepareStatement("SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?)");
         p.setString(1, shift.getEmployee().getFirstName());
