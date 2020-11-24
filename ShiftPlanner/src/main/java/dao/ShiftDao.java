@@ -38,15 +38,15 @@ public class ShiftDao {
      * @return employee's shifts as ann ArrayList
      * @throws SQLException
      */
-    public ArrayList<Shift> getShiftsByEmployee(Employee employee) throws SQLException{
+    public ArrayList<Shift> getShiftsByEmployee(Employee employee) throws SQLException {
         ArrayList<Shift> shifts = new ArrayList<>();
         p = db.prepareStatement("SELECT fromtime, totime, date FROM Shifts WHERE employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?))");
         p.setString(1, employee.getFirstName());
         p.setString(2, employee.getLastName());
         ResultSet r = p.executeQuery();
-        while (r.next())
+        while (r.next()) {
             shifts.add(new Shift(r.getString("fromtime"), r.getString("totime"), r.getString("date"), employee));
-
+        }
         return shifts;
 
     }
@@ -61,13 +61,13 @@ public class ShiftDao {
         p.setString(1, shift.getEmployee().getFirstName());
         p.setString(2, shift.getEmployee().getLastName());
         ResultSet r = p.executeQuery();
-        int employee_id = r.getInt("id");
+        int employeeId = r.getInt("id");
 
         p = db.prepareStatement("INSERT INTO Shifts (fromtime, totime, date, employee_id) VALUES (?,?,?,?)");
         p.setString(1, shift.getFrom());
         p.setString(2, shift.getTo());
         p.setString(3, shift.getDate());
-        p.setInt(4, employee_id);
+        p.setInt(4, employeeId);
         p.executeUpdate();
     }
 

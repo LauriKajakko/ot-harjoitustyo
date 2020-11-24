@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 import java.net.URL;
@@ -23,6 +24,7 @@ public class EmployeeViewController implements Initializable {
     @FXML
     public ChoiceBox<String> choiceBox;
     public ListView<String> shiftListView;
+    public Label shiftLabel;
 
     public EmployeeDao employeeDao;
     public ShiftDao shiftDao;
@@ -67,7 +69,6 @@ public class EmployeeViewController implements Initializable {
         try {
             ArrayList<Shift> l = shiftDao.getShiftsByEmployee(employeeDao.getByName(names[0], names[1]));
             for (Shift shift: l) {
-                System.out.println("shift in loop: " + shift.getDate());
                 shiftList.add(shift.getDate());
             }
             shiftListView.setItems(shiftList);
