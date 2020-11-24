@@ -15,6 +15,7 @@ Two kinds of users: Employers and employees
   * ability to track how much different tasks have taken time
   * ability to add employees
   * ability to manage tasks and mark as done
+  * ability to see shifts of employees __(done)__
 
 * Employees
   * ability track only their own worktime, shifts and tasks
