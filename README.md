@@ -6,6 +6,8 @@ Application for managing employees and work shifts.
 
 [Instructions](https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/Instructions.md)
 
+[Architecture](https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/architecture.md)
+
 [Test Document](https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/test_document.md)
 
 [Project definition](https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/definition.md)
