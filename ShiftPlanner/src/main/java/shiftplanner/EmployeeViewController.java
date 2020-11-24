@@ -64,7 +64,7 @@ public class EmployeeViewController implements Initializable {
 
     public void setShiftsToListView(String name) {
         System.out.println("setShifts gets called");
-        shiftList= FXCollections.observableArrayList();
+        shiftList = FXCollections.observableArrayList();
         String[] names = name.split(" ");
         try {
             ArrayList<Shift> l = shiftDao.getShiftsByEmployee(employeeDao.getByName(names[0], names[1]));

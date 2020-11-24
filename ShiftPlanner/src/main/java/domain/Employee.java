@@ -14,7 +14,7 @@ public class Employee {
      * @param lastName employee's last name
      * @param role employee's role at work
      */
-    public Employee(String firstName, String lastName, String role){
+    public Employee(String firstName, String lastName, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
