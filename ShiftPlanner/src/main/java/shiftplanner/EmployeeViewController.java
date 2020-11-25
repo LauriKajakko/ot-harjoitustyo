@@ -8,11 +8,13 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ToggleButton;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,7 +26,8 @@ public class EmployeeViewController implements Initializable {
     @FXML
     public ChoiceBox<String> choiceBox;
     public ListView<String> shiftListView;
-    public Label shiftLabel;
+    public Label infoLabel;
+    public ToggleButton toggleButton;
 
     public EmployeeDao employeeDao;
     public ShiftDao shiftDao;
@@ -80,4 +83,14 @@ public class EmployeeViewController implements Initializable {
     }
 
 
+    public void handleToggle(ActionEvent event) {
+        if (toggleButton.getText().equals("show employee info")) {
+            toggleButton.setText("hide employee info");
+            infoLabel.setText(shiftListView.getSelectionModel().getSelectedItem());
+            System.out.println(shiftListView.getSelectionModel().getSelectedItem());
+        } else {
+            toggleButton.setText("show employee info");
+            infoLabel.setText(choiceBox.getValue());
+        }
+    }
 }

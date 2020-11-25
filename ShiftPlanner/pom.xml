@@ -62,7 +62,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>main/java/shiftplanner/*</exclude>
+                        <exclude>**/main/java/shiftplanner/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>

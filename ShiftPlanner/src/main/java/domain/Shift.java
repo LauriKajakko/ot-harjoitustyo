@@ -1,17 +1,21 @@
 package domain;
 
+import java.util.ArrayList;
+
 public class Shift {
 
     private String from;
     private String to;
     private String date;
     private Employee employee;
+    private ArrayList<Task> tasks;
 
     /**
      * @param from starting time as hh:mm:ss (hours:minutes:seconds)
      * @param to   leaving time as hh:mm:ss (hours:minutes:seconds)
      * @param date day of the shift as dd:mm:yyyy (days:months:years)
      * @param employee who is working this shift
+     * @param tasks tasks for this shift
      */
     public Shift(String from, String to, String date, Employee employee) {
         this.from = from;
