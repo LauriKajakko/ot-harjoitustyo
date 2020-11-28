@@ -12,18 +12,8 @@ public class EmployeeDao {
     private Statement s;
     private PreparedStatement p;
 
-    /**
-     * Constructor
-     *
-     * @throws SQLException
-     */
-    public EmployeeDao() throws SQLException {
-        Connection db = DriverManager.getConnection("jdbc:sqlite:dev.db");
-        this.db = db;
-    }
 
     /**
-     * Constructor for testing
      *
      * @param db Test Database connection
      * @throws SQLException

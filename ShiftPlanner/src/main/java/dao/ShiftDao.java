@@ -2,6 +2,7 @@ package dao;
 
 import domain.Employee;
 import domain.Shift;
+import domain.Task;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,17 +14,6 @@ public class ShiftDao {
     private PreparedStatement p;
 
     /**
-     * Constructor
-     *
-     * @throws SQLException
-     */
-    public ShiftDao() throws SQLException {
-        Connection db = DriverManager.getConnection("jdbc:sqlite:dev.db");
-        this.db = db;
-    }
-
-    /**
-     * Constructor for testing
      *
      * @param db Test Database connection
      * @throws SQLException
@@ -35,7 +25,7 @@ public class ShiftDao {
     /**
      *
      * @param employee whose shifts are retrieved form database
-     * @return employee's shifts as ann ArrayList
+     * @return employee's shifts as an ArrayList
      * @throws SQLException
      */
     public ArrayList<Shift> getShiftsByEmployee(Employee employee) throws SQLException {
@@ -44,6 +34,7 @@ public class ShiftDao {
         p.setString(1, employee.getFirstName());
         p.setString(2, employee.getLastName());
         ResultSet r = p.executeQuery();
+
         while (r.next()) {
             shifts.add(new Shift(r.getString("fromtime"), r.getString("totime"), r.getString("date"), employee));
         }

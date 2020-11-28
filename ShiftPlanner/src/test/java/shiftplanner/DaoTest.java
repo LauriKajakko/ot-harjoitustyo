@@ -3,10 +3,13 @@ package shiftplanner;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
+import dao.Database;
 import dao.EmployeeDao;
 import dao.ShiftDao;
+import dao.TaskDao;
 import domain.Employee;
 import domain.Shift;
+import domain.Task;
 import org.junit.Before;
 import org.junit.After;
 import org.junit.Test;
@@ -20,24 +23,14 @@ public class DaoTest {
     private Statement s;
     private PreparedStatement p;
     private Connection testdb;
+    Database db;
 
     @Before
     public void setUp() throws SQLException{
-        testdb = DriverManager.getConnection("jdbc:sqlite:test.db");
+        db = new Database("test.db");
+        testdb = db.connect();
+
         s = testdb.createStatement();
-
-        s.execute("BEGIN TRANSACTION");
-        s.execute("CREATE TABLE Employees (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, role TEXT)");
-        s.execute("COMMIT;");
-
-        s.execute("BEGIN TRANSACTION");
-        s.execute("INSERT INTO Employees (firstname, lastname, role) VALUES ('lauri', 'kajakko', 'ceo')");
-        s.execute("INSERT INTO Employees (firstname, lastname, role) VALUES ('matti', 'meikalainen', 'cto')");
-        s.execute("COMMIT;");
-
-        s.execute("BEGIN TRANSACTION");
-        s.execute("CREATE TABLE Shifts (id INTEGER PRIMARY KEY, fromtime TEXT, totime TEXT, date TEXT,  employee_id INTEGER)");
-        s.execute("COMMIT;");
 
         s.execute("BEGIN TRANSACTION");
         s.execute("INSERT INTO Shifts (fromtime, totime, date, employee_id) VALUES ('08:00:00', '16:00:00', '18.11.2020', 1)");
@@ -46,7 +39,32 @@ public class DaoTest {
         s.execute("INSERT INTO Shifts (fromtime, totime, date, employee_id) VALUES ('08:00:00', '16:00:00', '29.11.2020', 1)");
         s.execute("INSERT INTO Shifts (fromtime, totime, date, employee_id) VALUES ('08:00:00', '16:00:00', '01.12.2020', 2)");
         s.execute("COMMIT;");
+
+
+        s.execute("BEGIN TRANSACTION");
+        s.execute("INSERT INTO Employees (firstname, lastname, role) VALUES ('lauri', 'kajakko', 'ceo')");
+        s.execute("INSERT INTO Employees (firstname, lastname, role) VALUES ('matti', 'meikalainen', 'cto')");
+        s.execute("COMMIT;");
+
+        s.execute("BEGIN TRANSACTION");
+        s.execute("INSERT INTO Tasks (name, done, shift_id) VALUES ('refactor code', 1, 1)");
+        s.execute("INSERT INTO Tasks (name, done, shift_id) VALUES ('write code', 1, 1)");
+        s.execute("INSERT INTO Tasks (name, done, shift_id) VALUES ('refactor more code', 0, 1)");
+        s.execute("COMMIT;");
     }
+
+    @Test
+    public void rightTasksAreReturnedWithGetTasksByShift() throws SQLException {
+        TaskDao dao = new TaskDao(testdb);
+        ShiftDao sdao = new ShiftDao(testdb);
+        EmployeeDao edao = new EmployeeDao(testdb);
+
+        ArrayList<Shift> shifts = sdao.getShiftsByEmployee(edao.getByName("lauri", "kajakko"));
+        ArrayList<Task> tasks = dao.getTasksByShift(shifts.get(0));
+
+        assertEquals("refactor code", tasks.get(0).getName());
+    }
+
 
     @Test
     public void rightEmployeesAreReturned() throws SQLException{
@@ -67,13 +85,16 @@ public class DaoTest {
         Employee newEmployee = new Employee("mutti", "polpa", "manager");
         dao.addNew(newEmployee);
 
+        for(Employee e : dao.getAll())
+            System.out.println(e.getFirstName());
+
         assertEquals(newEmployee.getFirstName() ,dao.getAll().get(2).getFirstName());
     }
 
     @Test
     public void rightShiftsAreReturnedByEmployee() throws SQLException {
         ShiftDao dao = new ShiftDao(testdb);
-        EmployeeDao employeeDao = new EmployeeDao();
+        EmployeeDao employeeDao = new EmployeeDao(testdb);
         Employee e = employeeDao.getAll().get(0);
 
         ArrayList<Shift> shifts = dao.getShiftsByEmployee(e);
@@ -82,12 +103,13 @@ public class DaoTest {
         assertEquals("18.11.2020", shifts.get(0).getDate());
     }
 
-    //TODO addshift test
+
 
     @After
     public void tearDown() throws SQLException {
-        s.execute("DROP TABLE Employees");
-        s.execute("DROP TABLE Shifts");
+        db.delete();
     }
+
+
 
 }

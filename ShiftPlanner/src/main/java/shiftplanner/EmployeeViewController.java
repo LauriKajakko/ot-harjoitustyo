@@ -1,5 +1,6 @@
 package shiftplanner;
 
+import dao.Database;
 import dao.EmployeeDao;
 import dao.ShiftDao;
 import domain.Employee;
@@ -17,6 +18,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -37,10 +39,14 @@ public class EmployeeViewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+
         employeeList = FXCollections.observableArrayList();
         try {
-            employeeDao = new EmployeeDao();
-            shiftDao = new ShiftDao();
+            Database db = new Database("dev.db");
+            Connection conn = db.connect();
+            employeeDao = new EmployeeDao(conn);
+            shiftDao = new ShiftDao(conn);
             for (Employee employee: employeeDao.getAll()) {
                 employeeList.add(employee);
             }

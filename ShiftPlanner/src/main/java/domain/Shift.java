@@ -8,7 +8,6 @@ public class Shift {
     private String to;
     private String date;
     private Employee employee;
-    private ArrayList<Task> tasks;
 
     /**
      * @param from starting time as hh:mm:ss (hours:minutes:seconds)

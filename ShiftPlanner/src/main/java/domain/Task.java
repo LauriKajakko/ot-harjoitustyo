@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Task {
 
     private String name;
-    private ArrayList<Shift> shifts;
+    private Shift shift;
     private boolean done;
 
-    public Task(String name, ArrayList<Shift> shifts, boolean done) {
+    public Task(String name, Shift shift, boolean done) {
         this.name = name;
-        this.shifts = shifts;
+        this.shift = shift;
         this.done = done;
     }
 
@@ -20,10 +20,6 @@ public class Task {
 
     public String getName() {
         return name;
-    }
-
-    public ArrayList<Shift> getShifts() {
-        return shifts;
     }
 
     public boolean isDone() {
