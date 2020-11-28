@@ -12,9 +12,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -24,27 +24,26 @@ import java.util.ResourceBundle;
 public class EmployeeViewController implements Initializable {
 
     @FXML
-    public ChoiceBox<String> choiceBox;
-    public ListView<String> shiftListView;
-    public Label infoLabel;
+    public ChoiceBox<Employee> choiceBox;
+    public ListView<Shift> shiftListView;
+    public Text infoText;
     public ToggleButton toggleButton;
 
     public EmployeeDao employeeDao;
     public ShiftDao shiftDao;
-    ObservableList<String> employeeList;
-    ObservableList<String> shiftList;
+    ObservableList<Employee> employeeList;
+    ObservableList<Shift> shiftList;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         employeeList = FXCollections.observableArrayList();
-
         try {
             employeeDao = new EmployeeDao();
             shiftDao = new ShiftDao();
-            for (Employee employee: employeeDao.getAll())
-                employeeList.add(employee.getFirstName() + " " + employee.getLastName());
-
+            for (Employee employee: employeeDao.getAll()) {
+                employeeList.add(employee);
+            }
         } catch (SQLException throwable) {
             System.out.println("database error \n there is probably no database or sum wrong wit it");
             throwable.printStackTrace();
@@ -56,23 +55,23 @@ public class EmployeeViewController implements Initializable {
 
     public void initChoiceBox() {
         choiceBox.setItems(employeeList);
-        choiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+        choiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Employee>() {
             @Override
-            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+            public void changed(ObservableValue<? extends Employee> observableValue, Employee employee, Employee t1) {
                 System.out.println("choiceBox value changed to: " + t1);
                 setShiftsToListView(t1);
             }
         });
     }
 
-    public void setShiftsToListView(String name) {
+    public void setShiftsToListView(Employee employee) {
         System.out.println("setShifts gets called");
         shiftList = FXCollections.observableArrayList();
-        String[] names = name.split(" ");
         try {
-            ArrayList<Shift> l = shiftDao.getShiftsByEmployee(employeeDao.getByName(names[0], names[1]));
+            ArrayList<Shift> l = shiftDao.getShiftsByEmployee(employee);
             for (Shift shift: l) {
-                shiftList.add(shift.getDate());
+                shiftList.add(shift);
             }
             shiftListView.setItems(shiftList);
         } catch (SQLException throwable) {
@@ -84,13 +83,15 @@ public class EmployeeViewController implements Initializable {
 
 
     public void handleToggle(ActionEvent event) {
-        if (toggleButton.getText().equals("show employee info")) {
-            toggleButton.setText("hide employee info");
-            infoLabel.setText(shiftListView.getSelectionModel().getSelectedItem());
-            System.out.println(shiftListView.getSelectionModel().getSelectedItem());
-        } else {
+        System.out.println(event.getEventType());
+        if (toggleButton.getText().equals("show shift info")) {
             toggleButton.setText("show employee info");
-            infoLabel.setText(choiceBox.getValue());
+
+            infoText.setText(shiftListView.getSelectionModel().getSelectedItem().toString());
+        } else {
+            toggleButton.setText("show shift info");
+            infoText.setText(choiceBox.getValue().toString());
         }
+        System.out.println(shiftListView.getSelectionModel().getSelectedItem().toString());
     }
 }

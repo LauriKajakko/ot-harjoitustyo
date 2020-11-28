@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.ArrayList;
-
 public class Employee {
 
     private String firstName;
@@ -18,6 +16,11 @@ public class Employee {
         this.firstName = firstName;
         this.lastName = lastName;
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 
     public String getFirstName() {

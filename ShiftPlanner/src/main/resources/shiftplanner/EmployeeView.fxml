@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.text.Text?>
 <AnchorPane minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiftplanner.EmployeeViewController">
 
     <HBox>
@@ -19,12 +20,9 @@
                     <Insets right="10.0" top="3.0" />
                 </padding>
             </Label>
-            <ChoiceBox fx:id="choiceBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0">
-            </ChoiceBox>
-
-            <ToggleButton text="show employee info" fx:id="toggleButton" onAction="#handleToggle"/>
-
-         <Label fx:id="infoLabel" prefHeight="18.0" prefWidth="15.0" />
+            <ChoiceBox fx:id="choiceBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0" />
+            <ToggleButton text="show shift info" fx:id="toggleButton" onAction="#handleToggle"/>
+            <Text fx:id="infoText" />
         </VBox>
         <VBox>
             <padding>

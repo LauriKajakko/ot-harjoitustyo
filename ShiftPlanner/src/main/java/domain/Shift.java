@@ -15,13 +15,17 @@ public class Shift {
      * @param to   leaving time as hh:mm:ss (hours:minutes:seconds)
      * @param date day of the shift as dd:mm:yyyy (days:months:years)
      * @param employee who is working this shift
-     * @param tasks tasks for this shift
      */
     public Shift(String from, String to, String date, Employee employee) {
         this.from = from;
         this.to = to;
         this.date = date;
         this.employee = employee;
+    }
+
+    @Override
+    public String toString() {
+        return date + " " + " " + from + "-" + to;
     }
 
     public String getFrom() {

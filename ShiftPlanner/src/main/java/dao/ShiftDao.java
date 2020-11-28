@@ -51,6 +51,20 @@ public class ShiftDao {
 
     }
 
+    public Shift getShiftByDate(String date) throws SQLException {
+        p = db.prepareStatement("SELECT * FROM Shifts WHERE date=(?)");
+        p.setString(1, date);
+        ResultSet r = p.executeQuery();
+        String from = r.getString(0);
+        String to = r.getString(1);
+        String employeeId = Integer.toString(r.getInt(3));
+        p = db.prepareStatement("SELECT * FROM Employees WHERE id=(?)");
+        p.setString(1, employeeId);
+        r = p.executeQuery();
+        Employee employee = new Employee(r.getString(0), r.getString(1), r.getString(3));
+        return new Shift(from, to, date, employee);
+    }
+
     /**
      *
      * @param shift shift to add to database
