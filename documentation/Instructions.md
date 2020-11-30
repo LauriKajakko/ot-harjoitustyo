@@ -1,8 +1,6 @@
 # How to use
 
-## Configurations
 
-Application assumes there is a sqlite database "test.db" in the root directory. Database schema will be in the architecture document.
 
 ## How to start application
 
