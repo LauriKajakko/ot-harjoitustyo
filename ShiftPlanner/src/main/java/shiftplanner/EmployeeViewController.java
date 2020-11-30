@@ -1,10 +1,8 @@
 package shiftplanner;
 
-import dao.Database;
-import dao.EmployeeDao;
-import dao.ShiftDao;
-import domain.Employee;
-import domain.Shift;
+
+import dao.*;
+import domain.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,35 +31,45 @@ public class EmployeeViewController implements Initializable {
 
     public EmployeeDao employeeDao;
     public ShiftDao shiftDao;
+    public TaskDao taskDao;
+
+    public EmployeeService employeeService;
+    public ShiftService shiftService;
+    public TaskService taskService;
+
     ObservableList<Employee> employeeList;
     ObservableList<Shift> shiftList;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initDaos();
+        initServices();
+        initChoiceBox();
+    }
 
-
-        employeeList = FXCollections.observableArrayList();
+    public void initDaos() {
         try {
             Database db = new Database("dev.db");
             Connection conn = db.connect();
             employeeDao = new EmployeeDao(conn);
             shiftDao = new ShiftDao(conn);
-            for (Employee employee: employeeDao.getAll()) {
-                employeeList.add(employee);
-            }
+            taskDao = new TaskDao(conn);
         } catch (SQLException throwable) {
-            System.out.println("database error \n there is probably no database or sum wrong wit it");
             throwable.printStackTrace();
         }
+    }
 
-        initChoiceBox();
-
+    public void initServices() {
+        this.employeeService = new EmployeeService(employeeDao, shiftDao);
+        this.shiftService = new ShiftService(shiftDao);
+        this.taskService = new TaskService(taskDao);
     }
 
     public void initChoiceBox() {
+        employeeList = FXCollections.observableArrayList();
+        employeeList.addAll(employeeService.getAll());
         choiceBox.setItems(employeeList);
-
         choiceBox.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Employee>() {
             @Override
             public void changed(ObservableValue<? extends Employee> observableValue, Employee employee, Employee t1) {
@@ -74,19 +82,10 @@ public class EmployeeViewController implements Initializable {
     public void setShiftsToListView(Employee employee) {
         System.out.println("setShifts gets called");
         shiftList = FXCollections.observableArrayList();
-        try {
-            ArrayList<Shift> l = shiftDao.getShiftsByEmployee(employee);
-            for (Shift shift: l) {
-                shiftList.add(shift);
-            }
-            shiftListView.setItems(shiftList);
-        } catch (SQLException throwable) {
-            System.out.println("database error");
-            throwable.printStackTrace();
-        }
-
+        ArrayList<Shift> l = shiftService.getShiftsByEmployee(employee);
+        shiftList.addAll(l);
+        shiftListView.setItems(shiftList);
     }
-
 
     public void handleToggle(ActionEvent event) {
         System.out.println(event.getEventType());
