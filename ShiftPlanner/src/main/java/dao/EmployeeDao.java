@@ -32,9 +32,9 @@ public class EmployeeDao {
         ResultSet r = p.executeQuery();
 
         ArrayList<Employee> employees = new ArrayList<>();
-        while(r.next())
+        while (r.next()) {
             employees.add(new Employee(r.getString("firstname"), r.getString("lastname"), r.getString("role")));
-
+        }
         return employees;
     }
 

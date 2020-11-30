@@ -28,17 +28,17 @@ public class Database {
 
     public void createSchema() throws SQLException {
         s = db.createStatement();
-        if (!tableExists("employees")) {
+        if (!tableExists("Employees")) {
             s.execute("BEGIN TRANSACTION");
             s.execute("CREATE TABLE Employees (id INTEGER PRIMARY KEY, firstname TEXT, lastname TEXT, role TEXT)");
             s.execute("COMMIT;");
         }
-        if (!tableExists("shifts")) {
+        if (!tableExists("Shifts")) {
             s.execute("BEGIN TRANSACTION");
             s.execute("CREATE TABLE Shifts (id INTEGER PRIMARY KEY, fromtime TEXT, totime TEXT, date TEXT,  employee_id INTEGER)");
             s.execute("COMMIT;");
         }
-        if (!tableExists("tasks")) {
+        if (!tableExists("Tasks")) {
             s.execute("BEGIN TRANSACTION");
             s.execute("CREATE TABLE Tasks (id INTEGER PRIMARY KEY, name TEXT, done INTEGER, shift_id INTEGER)");
             s.execute("COMMIT;");
