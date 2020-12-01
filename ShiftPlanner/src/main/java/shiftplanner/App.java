@@ -22,7 +22,7 @@ public class App extends Application {
         stage.sizeToScene();
         stage.show();
         stage.setMinWidth(1000);
-        stage.setMinHeight(400);
+        stage.setMinHeight(480);
     }
 
     static void setRoot(String fxml) throws IOException {

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import shiftplanner.*?>
 
 <AnchorPane minHeight="400" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiftplanner.EmployeeViewController">
 
     <HBox>
-      <VBox prefHeight="395.0" prefWidth="228.0">
+      <VBox maxHeight="395.0" maxWidth="228.0" minHeight="395.0" minWidth="228.0" prefHeight="395.0" prefWidth="228.0">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="View and manage">
                <VBox.margin>
@@ -25,7 +27,7 @@
                   <Font size="15.0" />
                </font>
             </Text>
-               <Label>
+               <Label text="Select employee">
                    Select employee
                    <padding>
                        <Insets left="20.0" right="10.0" top="10.0" />
@@ -39,35 +41,37 @@
                   <Insets left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
             </ChoiceBox>
-               <Text fx:id="infoText" />
 
              <Text text="Date: ">
                <VBox.margin>
                   <Insets left="20.0" top="10.0" />
                </VBox.margin></Text>
-            <DatePicker>
+            <DatePicker fx:id="datePicker" editable="false">
                <VBox.margin>
                   <Insets left="20.0" />
-               </VBox.margin></DatePicker>
+               </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor></DatePicker>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Starting time:">
                <VBox.margin>
                   <Insets left="20.0" top="30.0" />
                </VBox.margin>
             </Text>
-            <Spinner>
+            <TimeSpinner fx:id="fromSpinner" editable="true">
                <VBox.margin>
                   <Insets left="20.0" />
-               </VBox.margin></Spinner>
+               </VBox.margin></TimeSpinner>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ending time:">
                <VBox.margin>
                   <Insets left="20.0" top="10.0" />
                </VBox.margin>
             </Text>
-            <Spinner>
+            <TimeSpinner fx:id="toSpinner">
                <padding>
                   <Insets left="20.0" />
-               </padding></Spinner>
-            <Button mnemonicParsing="false" text="Add">
+               </padding></TimeSpinner>
+            <Button fx:id="addButton" mnemonicParsing="false" text="Add">
                <VBox.margin>
                   <Insets left="20.0" top="5.0" />
                </VBox.margin>
@@ -87,6 +91,10 @@
                   <Insets left="20.0" top="30.0" />
                </VBox.margin>
             </ToggleButton>
+               <Text fx:id="infoText">
+               <VBox.margin>
+                  <Insets left="30.0" top="10.0" />
+               </VBox.margin></Text>
          </children>
       </VBox>
     </HBox>
