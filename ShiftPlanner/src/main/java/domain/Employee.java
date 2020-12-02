@@ -1,6 +1,6 @@
 package domain;
 
-public class Employee {
+public class Employee implements Comparable<Employee>  {
 
     private String firstName;
     private String lastName;
@@ -37,5 +37,13 @@ public class Employee {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public int compareTo(Employee employee) {
+        if (this.firstName.equals(employee.firstName) && this.lastName.equals(employee.lastName) && this.role.equals(employee.role)) {
+            return 0;
+        }
+        return -1;
     }
 }

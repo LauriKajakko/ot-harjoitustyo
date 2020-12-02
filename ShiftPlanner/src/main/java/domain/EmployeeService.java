@@ -49,4 +49,24 @@ public class EmployeeService {
         result[0] = hours + ":" + minutes;
         return result;
     }
+
+    public void addEmployee(Employee employee) {
+
+        try {
+            employeeDao.addNew(employee);
+        } catch (SQLException throwables) {
+
+        }
+    }
+
+    public Employee getByName(String firstname, String lastname) {
+        Employee e = new Employee("0", "0", "0");
+        try {
+            e = employeeDao.getByName(firstname, lastname);
+        } catch (SQLException throwables) {
+
+        }
+        return e;
+
+    }
 }

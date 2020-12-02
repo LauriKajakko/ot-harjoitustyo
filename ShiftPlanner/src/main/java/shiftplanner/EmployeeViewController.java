@@ -3,12 +3,9 @@ package shiftplanner;
 
 import dao.*;
 import domain.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -19,7 +16,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -28,12 +24,17 @@ public class EmployeeViewController implements Initializable {
     @FXML
     public ChoiceBox<Employee> choiceBox;
     public ListView<Shift> shiftListView;
-    public Text infoText;
-    public ToggleButton toggleButton;
     public TimeSpinner fromSpinner;
     public TimeSpinner toSpinner;
+
     public DatePicker datePicker;
-    public Button addButton;
+
+    public Button addShiftButton;
+    public Button addEmployeeButton;
+
+    public TextField firstNameField;
+    public TextField lastNameField;
+    public TextField roleField;
 
     public EmployeeDao employeeDao;
     public ShiftDao shiftDao;
@@ -58,6 +59,7 @@ public class EmployeeViewController implements Initializable {
         initServices();
         initChoiceBox();
         initAddShiftForm();
+        initAddEmployeeForm();
     }
 
     public void initDaos() {
@@ -83,11 +85,14 @@ public class EmployeeViewController implements Initializable {
         ArrayList<Employee> list = employeeService.getAll();
         employeeList.addAll(list);
         choiceBox.setItems(employeeList);
-        choiceBox.setValue(list.get(0));
-        setShiftsToListView(list.get(0));
         choiceBox.getSelectionModel().selectedItemProperty().addListener((observableValue, employee, t1) -> {
-            employeeValue = t1;
-            setShiftsToListView(t1);
+            if (t1 != null){
+                employeeValue = t1;
+                setShiftsToListView(t1);
+            } else {
+                setShiftsToListView(employeeValue);
+            }
+
         });
     }
 
@@ -109,37 +114,42 @@ public class EmployeeViewController implements Initializable {
             dateValue = t1.toString();
         });
 
-        addButton.setOnAction(event -> {
-            Shift shiftToAdd = new Shift(fromValue, toValue, dateValue, employeeValue);
-            shiftService.addShift(shiftToAdd);
-            setShiftsToListView(employeeValue);
+        addShiftButton.setOnAction(event -> {
+            if (choiceBox.getValue() != null) {
+                Shift shiftToAdd = new Shift(fromValue, toValue, dateValue, employeeValue);
+                shiftService.addShift(shiftToAdd);
+                setShiftsToListView(employeeValue);
+            }
         });
     }
 
+    public void initAddEmployeeForm() {
+        addEmployeeButton.setOnAction(actionEvent -> {
+            String firstName = firstNameField.getText();
+            String lastName = lastNameField.getText();
+            String role = roleField.getText();
+            firstNameField.clear();
+            lastNameField.clear();
+            roleField.clear();
+
+            Employee employeeToAdd = new Employee(firstName, lastName, role);
+            employeeService.addEmployee(employeeToAdd);
+            updateChoiceBox();
+        });
+    }
+
+    public void updateChoiceBox() {
+        employeeList = FXCollections.observableArrayList();
+        ArrayList<Employee> list = employeeService.getAll();
+        employeeList.addAll(list);
+        choiceBox.setItems(employeeList);
+    }
+
     public void setShiftsToListView(Employee employee) {
-        System.out.println("setShifts gets called");
         shiftList = FXCollections.observableArrayList();
         ArrayList<Shift> l = shiftService.getShiftsByEmployee(employee);
         shiftList.addAll(l);
         shiftListView.setItems(shiftList);
     }
 
-    public void handleToggle(ActionEvent event) {
-        System.out.println(event.getEventType());
-        if (toggleButton.getText().equals("show shift info")) {
-            toggleButton.setText("show employee info");
-            if (shiftListView.getSelectionModel().isEmpty()) {
-                infoText.setText("select a shift from the list");
-            } else {
-                String info = shiftListView.getSelectionModel().getSelectedItem().toString();
-                infoText.setText(info);
-            }
-        } else {
-            toggleButton.setText("show shift info");
-            infoText.setText(
-                    "First name: " + employeeValue.getFirstName() + "\n"  +
-                    "Last name: " + employeeValue.getLastName() + "\n" +
-                    "Role: " + employeeValue.getRole());
-        }
-    }
 }
