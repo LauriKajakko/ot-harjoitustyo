@@ -14,6 +14,10 @@ Application for managing employees and work shifts.
 
 [Hour Report](https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/HourReport.md)
 
+## Week 5 Release
+
+[release](https://github.com/LauriKajakko/ot-harjoitustyo/releases/tag/Week5)
+
 ## Command Line
 
 ### Testing

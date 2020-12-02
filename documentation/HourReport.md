@@ -8,5 +8,10 @@
 | 22.11.| 2            | Learning fxml stuff                       |
 | 23.11.| 3            | Working on daos                           |
 | 24.11.| 4            | Working on week 4 requirements            |
-| Total | 17           |                                           | 
+| 25.11 | 1            | Added task object                         |
+| 28.11 | 2            | Made other task functions except UI       |
+| 30.11 | 4            | Major refactoring and working on controllers|
+| 1.12  | 5            | Controllers and UI                        |
+| 2.12  | 5            | Everything for the deadliner +controllers and UI|
+| Total | 34           |                                           | 
 
