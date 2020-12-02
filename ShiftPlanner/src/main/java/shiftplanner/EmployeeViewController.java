@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -91,9 +92,12 @@ public class EmployeeViewController implements Initializable {
     }
 
     public void initAddShiftForm() {
+        LocalDate t = LocalDate.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(), LocalDateTime.now().getDayOfMonth());
+        datePicker.valueProperty().setValue(t);
         employeeValue = choiceBox.getValue();
         fromValue = fromSpinner.valueProperty().get().getHour() + ":" + fromSpinner.valueProperty().get().getMinute();
         toValue = toSpinner.valueProperty().get().getHour() + ":" + toSpinner.valueProperty().get().getMinute();
+        dateValue = datePicker.valueProperty().get().toString();
 
         fromSpinner.valueProperty().addListener((observableValue, localTime, t1) -> {
             fromValue = t1.toString();
@@ -106,6 +110,7 @@ public class EmployeeViewController implements Initializable {
         });
 
         addButton.setOnAction(event -> {
+
             Shift shiftToAdd = new Shift(fromValue, toValue, dateValue, employeeValue);
             shiftService.addShift(shiftToAdd);
             setShiftsToListView(employeeValue);
