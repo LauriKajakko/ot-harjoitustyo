@@ -62,7 +62,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>**/main/java/shiftplanner/**</exclude>
+                        <exclude>**/shiftplanner/**</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -80,7 +80,7 @@
                 <version>2.17</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
-                    <excludes>**/module-info.java</excludes>
+                    <excludes>**/module-info.java,**/shiftplanner/**</excludes>
                 </configuration>
             </plugin>
             <plugin>

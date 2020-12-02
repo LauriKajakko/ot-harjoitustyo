@@ -110,7 +110,6 @@ public class EmployeeViewController implements Initializable {
         });
 
         addButton.setOnAction(event -> {
-
             Shift shiftToAdd = new Shift(fromValue, toValue, dateValue, employeeValue);
             shiftService.addShift(shiftToAdd);
             setShiftsToListView(employeeValue);
@@ -135,7 +134,6 @@ public class EmployeeViewController implements Initializable {
                 String info = shiftListView.getSelectionModel().getSelectedItem().toString();
                 infoText.setText(info);
             }
-
         } else {
             toggleButton.setText("show shift info");
             infoText.setText(

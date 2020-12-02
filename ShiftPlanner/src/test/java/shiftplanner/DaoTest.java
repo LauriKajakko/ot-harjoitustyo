@@ -103,6 +103,17 @@ public class DaoTest {
         assertEquals("18.11.2020", shifts.get(0).getDate());
     }
 
+    @Test
+    public void addShiftWorks() throws SQLException {
+        ShiftDao dao = new ShiftDao(testdb);
+        EmployeeDao edao = new EmployeeDao(testdb);
+        Employee e = edao.getByName("lauri", "kajakko");
+        Shift shift = new Shift("11:00", "12:00", "12/12/2020", e);
+        dao.addShift(shift);
+        Shift testShift = dao.getShiftsByEmployee(e).get(3);
+        assertEquals(shift.getFrom()+shift.getTo()+shift.getDate()+shift.getEmployee(), testShift.getFrom()+testShift.getTo()+testShift.getDate()+testShift.getEmployee());
+    }
+
 
 
     @After
