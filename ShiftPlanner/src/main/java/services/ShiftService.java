@@ -1,6 +1,8 @@
-package domain;
+package services;
 
 import dao.ShiftDao;
+import domain.Employee;
+import domain.Shift;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

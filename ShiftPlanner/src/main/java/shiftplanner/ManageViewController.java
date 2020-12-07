@@ -5,12 +5,15 @@ import dao.*;
 import domain.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
+import services.EmployeeService;
+import services.ShiftService;
+import services.TaskService;
+import utils.Conversions;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -19,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class EmployeeViewController implements Initializable {
+public class ManageViewController implements Initializable {
 
     @FXML
     public ChoiceBox<Employee> choiceBox;
@@ -31,6 +34,8 @@ public class EmployeeViewController implements Initializable {
 
     public Button addShiftButton;
     public Button addEmployeeButton;
+    public Button employeeInfoButton;
+    public Button shiftInfoButton;
 
     public TextField firstNameField;
     public TextField lastNameField;
@@ -60,6 +65,7 @@ public class EmployeeViewController implements Initializable {
         initChoiceBox();
         initAddShiftForm();
         initAddEmployeeForm();
+        initInfoButtons();
     }
 
     public void initDaos() {
@@ -115,7 +121,7 @@ public class EmployeeViewController implements Initializable {
         });
 
         addShiftButton.setOnAction(event -> {
-            if (choiceBox.getValue() != null) {
+            if (choiceBox.getValue() != null && toIsAfterFrom(fromValue, toValue)) {
                 Shift shiftToAdd = new Shift(fromValue, toValue, dateValue, employeeValue);
                 shiftService.addShift(shiftToAdd);
                 setShiftsToListView(employeeValue);
@@ -138,6 +144,25 @@ public class EmployeeViewController implements Initializable {
         });
     }
 
+    public void initInfoButtons() {
+        employeeInfoButton.setOnAction(actionEvent -> {
+            try {
+                System.out.println(choiceBox.getValue());
+                App.setEmployeeRoot(choiceBox.getValue());
+            } catch (IOException e) {
+
+            }
+        });
+
+        shiftInfoButton.setOnAction(actionEvent -> {
+            try {
+                App.setShiftRoot(shiftListView.getSelectionModel().getSelectedItem());
+            } catch (IOException e) {
+
+            }
+        });
+    }
+
     public void updateChoiceBox() {
         employeeList = FXCollections.observableArrayList();
         ArrayList<Employee> list = employeeService.getAll();
@@ -150,6 +175,17 @@ public class EmployeeViewController implements Initializable {
         ArrayList<Shift> l = shiftService.getShiftsByEmployee(employee);
         shiftList.addAll(l);
         shiftListView.setItems(shiftList);
+    }
+
+    private boolean toIsAfterFrom(String from, String to) {
+        String[] splitFrom = from.split(":");
+        String[] splitTo = to.split(":");
+        if (Integer.parseInt(splitFrom[0]) >= Integer.parseInt(splitTo[0])) {
+            if (Integer.parseInt(splitFrom[1]) >= Integer.parseInt(splitTo[1])) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

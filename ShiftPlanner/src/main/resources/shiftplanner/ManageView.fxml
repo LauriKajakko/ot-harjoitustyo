@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <?import shiftplanner.*?>
 
-<AnchorPane minHeight="400" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiftplanner.EmployeeViewController">
+<AnchorPane minHeight="400" minWidth="800.0" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiftplanner.ManageViewController">
 
     <HBox>
       <VBox prefHeight="395.0" prefWidth="290.0">
@@ -69,28 +69,36 @@
       </VBox>
       <VBox maxHeight="395.0" maxWidth="228.0" minHeight="395.0" minWidth="228.0" prefHeight="395.0" prefWidth="228.0">
          <children>
-            <Text text="Add Shifts">
-               <VBox.margin>
-                  <Insets left="20.0" top="50.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
                <Label text="Select employee">
                    Select employee
                    <padding>
                        <Insets left="20.0" right="10.0" top="10.0" />
                    </padding>
                <VBox.margin>
-                  <Insets />
+                  <Insets top="40.0" />
                </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
                </Label>
                <ChoiceBox fx:id="choiceBox" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="130.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" top="10.0" />
                </VBox.margin>
             </ChoiceBox>
+            <Button fx:id="employeeInfoButton" mnemonicParsing="false" text="Employee info">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Text text="Add Shifts">
+               <VBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Text>
 
              <Text text="Date: ">
                <VBox.margin>
@@ -135,7 +143,8 @@
                 <Insets top="10.0" />
             </padding>
             <Label text="Shifts" />
-            <ListView fx:id="shiftListView" prefHeight="370.0" prefWidth="260.0" VBox.vgrow="ALWAYS" />
+            <ListView fx:id="shiftListView" prefHeight="345.0" prefWidth="247.0" VBox.vgrow="ALWAYS" />
+         <Button fx:id="shiftInfoButton" mnemonicParsing="false" text="Shift info" />
         </VBox>
     </HBox>
 

@@ -1,5 +1,7 @@
 package shiftplanner;
 
+import domain.Employee;
+import domain.Shift;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +16,12 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Employee employeeForInfo;
+    private static Shift shiftForInfo;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("EmployeeView"), 640, 480);
+        scene = new Scene(loadFXML("ManageView"), 640, 480);
         stage.setScene(scene);
         stage.sizeToScene();
         stage.show();
@@ -27,6 +31,24 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+    }
+
+    static void setEmployeeRoot(Employee employee) throws IOException {
+        employeeForInfo = employee;
+        setRoot("EmployeeInfo");
+    }
+
+    static void setShiftRoot(Shift shift) throws IOException {
+        shiftForInfo = shift;
+        setRoot("ShiftInfo");
+    }
+
+    static Employee getEmployee() {
+        return employeeForInfo;
+    }
+
+    static Shift getShift() {
+        return shiftForInfo;
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

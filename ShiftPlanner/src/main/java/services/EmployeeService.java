@@ -1,10 +1,14 @@
-package domain;
+package services;
 
 import dao.EmployeeDao;
 import dao.ShiftDao;
+import domain.Employee;
+import domain.Shift;
 
+import java.io.StringBufferInputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class EmployeeService {
 
@@ -26,32 +30,41 @@ public class EmployeeService {
         return employees;
     }
 
-    public String[] getSummary(Employee employee) {
+    public String[][] getLastWorkDays(Employee employee, int days) {
         ArrayList<Shift> shifts = new ArrayList<>();
         try {
-            shiftDao.getShiftsByEmployee(employee);
+            shifts = shiftDao.getShiftsByEmployee(employee);
+            Collections.reverse(shifts);
         } catch (SQLException throwables) {
-
         }
-        int minutesWorked = 0;
-        for (Shift shift: shifts) {
-            String[] s = shift.getFrom().split(":");
-            int hours = Integer.getInteger(s[0]);
-            int minutes = Integer.getInteger(s[1]);
-            minutes += hours * 60;
-            minutesWorked += minutes;
+        //First minutes then day
+        String[][] result = new String[days][2];
+
+        for (int i = 0; i < days; i++) {
+            if (shifts.size()<=i) {
+                result[i][0] = "0";
+                result[i][1] = "";
+                continue;
+            }
+            int hours = 0;
+            int minutes = 0;
+            String[] from = shifts.get(i).getFrom().split(":");
+            String[] to = shifts.get(i).getTo().split(":");
+            if(from[0] == to[0]){
+                minutes = Integer.parseInt(to[1]) - Integer.parseInt(from[1]);
+            } else {
+                hours = Integer.parseInt(to[0]) - Integer.parseInt(from[0]);
+                minutes = hours * 60 + Integer.parseInt(to[1]) - Integer.parseInt(from[1]);
+            }
+            String date = shifts.get(i).getDate();
+            result[i][0] = Integer.toString(minutes);
+            result[i][1] = date;
         }
 
-        int hours = minutesWorked / 60;
-        int minutes = minutesWorked % 60;
-
-        String[] result = new String[1];
-        result[0] = hours + ":" + minutes;
         return result;
     }
 
     public void addEmployee(Employee employee) {
-
         try {
             employeeDao.addNew(employee);
         } catch (SQLException throwables) {

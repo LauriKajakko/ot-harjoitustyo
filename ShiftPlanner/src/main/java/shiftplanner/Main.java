@@ -1,3 +1,5 @@
+package shiftplanner;
+
 import shiftplanner.App;
 
 public class Main {
