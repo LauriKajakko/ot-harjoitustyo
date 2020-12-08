@@ -35,8 +35,6 @@ For example showing the data of one employee when yser selects an employee and p
   * method gets all shifts and selects the amount of days to show
   * method does all the conversion logic for calculating the time
 
-(image)
-
 
 Services are between UI and DAOs and convert the data for the user to be easily readable. The package Domain contains only the object that represent different of types of information in the application.
 
