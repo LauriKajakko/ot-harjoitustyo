@@ -6,7 +6,7 @@
 
 __Preferably use the jar file in the [release](https://github.com/LauriKajakko/ot-harjoitustyo/releases/tag/v1.1)__
 
-Alternatively the application can be started by downloading the sourcecode and typing the following command in project's root directory:
+Alternatively the application can be started by downloading the sourcecode and typing the following command in java project's root directory:
 
 ```
 mvn compile exec:java -Dexec.mainClass=shiftplanner.Main
