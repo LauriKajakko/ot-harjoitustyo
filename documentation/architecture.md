@@ -58,4 +58,6 @@ Package dao:
 The dates are stored as dd-mm-yyyy because LocalDate in java's own libraries use that format. Times are in hh:mm. 
 
  
+### Utils
 
+Added the conversions class and utils package even though there is not much else because UI needs to be separated from logic. Also it makes scaling easier when adding more functionality.
