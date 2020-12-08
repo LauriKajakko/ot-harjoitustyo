@@ -10,9 +10,19 @@ Application can be started by downloading the sourcecode and typing the followin
 mvn compile exec:java -Dexec.mainClass=Main
 ```
 
-Or use the jar file in the release
+__But preferably use the jar file in the release__
 
 ## How to use the app
 
-Fill forms and press add
+You can fill a form to add an employee
+
+<img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/addemployee.png />
+
+Then you're able to add some shifts for her
+
+<img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/addedshifts.png />
+
+And now you can see an overview when you click "Employee info"
+
+<img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/employeeinfo.png />
 
