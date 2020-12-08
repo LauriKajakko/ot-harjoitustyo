@@ -7,7 +7,7 @@
 Application can be started by downloading the sourcecode and typing the following command in project's root directory:
 
 ```
-mvn compile exec:java -Dexec.mainClass=Main
+mvn compile exec:java -Dexec.mainClass=shiftplanner.Main
 ```
 
 __But preferably use the jar file in the release__
