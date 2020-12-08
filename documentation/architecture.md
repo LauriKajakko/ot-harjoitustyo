@@ -45,15 +45,15 @@ Services are between UI and DAOs and convert the data for the user to be easily 
 
 Package dao:
  * EmployeeDao
-  * Stores Employees and their information
+   * Stores Employees and their information
  * ShiftDao
-  * Stores Shifts and their information
+   * Stores Shifts and their information
  * TaskDao
-  * Stores Tasks and their information
+   * Stores Tasks and their information
  * Database
-  * Makes the connection to the database and checks if it exists
-  * Creates database if needed
-  * Returns the connection for DAOs
+   * Makes the connection to the database and checks if it exists
+   * Creates database if needed
+   * Returns the connection for DAOs
   
 The dates are stored as dd-mm-yyyy because LocalDate in java's own libraries use that format. Times are in hh:mm. 
 
