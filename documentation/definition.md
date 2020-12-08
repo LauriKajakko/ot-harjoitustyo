@@ -6,7 +6,7 @@ Gives the employer a chance to plan and track the working hours of employees.
 
 ## Users
 
-Two kinds of users: Employers and employees
+Employer
 
 ## Functionality
 
