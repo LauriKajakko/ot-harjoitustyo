@@ -2,10 +2,6 @@
 
 ## Program Structure
 
-<img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/ClassArchitecture.png />
-
-
-
 * Package "domain" contains objects used in the app
 * Package "dao" contains data access objects
   * All communication with database is here
@@ -31,4 +27,37 @@ When a form is filled and user presses the add button all the information is pas
 <img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/sequence_week5.png />
 
 ### Application logic
+
+Services do all the logic in the application. 
+
+For example showing the data of one employee when yser selects an employee and presses "Employee info":
+ * ui calls "getLastWorkDays(Employee employee, int days)" in EmployeeService class
+  * method gets all shifts and selects the amount of days to show
+  * method does all the conversion logic for calculating the time
+
+(image)
+
+
+Services are between UI and DAOs and convert the data for the user to be easily readable. The package Domain contains only the object that represent different of types of information in the application.
+
+<img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/ClassArchitecture.png />
+
+
+### Storing the information
+
+Package dao:
+ * EmployeeDao
+  * Stores Employees and their information
+ * ShiftDao
+  * Stores Shifts and their information
+ * TaskDao
+  * Stores Tasks and their information
+ * Database
+  * Makes the connection to the database and checks if it exists
+  * Creates database if needed
+  * Returns the connection for DAOs
+  
+The dates are stored as dd-mm-yyyy because LocalDate in java's own libraries use that format. Times are in hh:mm. 
+
+ 
 
