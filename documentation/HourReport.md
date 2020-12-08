@@ -13,5 +13,7 @@
 | 30.11 | 4            | Major refactoring and working on controllers|
 | 1.12  | 5            | Controllers and UI                        |
 | 2.12  | 5            | Everything for the deadliner +controllers and UI|
-| Total | 34           |                                           | 
+|7.12.  | 5            | Made employeeinfo view                    |
+|8.12.  | 7            | Documentation and struggle with configurations  |
+| Total | 46           |                                           | 
 
