@@ -40,7 +40,7 @@ public class Database {
         }
         if (!tableExists("Tasks")) {
             s.execute("BEGIN TRANSACTION");
-            s.execute("CREATE TABLE Tasks (id INTEGER PRIMARY KEY, name TEXT, done INTEGER, shift_id INTEGER)");
+            s.execute("CREATE TABLE Tasks (id INTEGER PRIMARY KEY, name TEXT, shift_id INTEGER)");
             s.execute("COMMIT;");
         }
     }

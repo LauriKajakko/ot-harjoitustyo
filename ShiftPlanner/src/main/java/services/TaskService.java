@@ -24,4 +24,12 @@ public class TaskService {
         }
         return tasks;
     }
+
+    public void addTask(Task task) {
+        try {
+            taskDao.addTask(task);
+        } catch (SQLException throwables) {
+            
+        }
+    }
 }

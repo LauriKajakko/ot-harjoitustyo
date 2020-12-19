@@ -33,17 +33,27 @@ public class TaskDao {
         ArrayList<Task> tasks = new ArrayList<>();
 
         while (r.next()) {
-            boolean done = false;
-
-            if (r.getInt("done") == 1) {
-                done = true;
-            }
-
-            tasks.add(new Task(r.getString("name"), shift, done));
+            tasks.add(new Task(r.getString("name"), shift));
         }
 
         return tasks;
     }
 
+    public void addTask(Task task) throws SQLException {
+        p = db.prepareStatement("SELECT id FROM Shifts WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) )");
+        p.setString(1, task.getShift().getFrom());
+        p.setString(2, task.getShift().getTo());
+        p.setString(3, task.getShift().getDate());
+        p.setString(4, task.getShift().getEmployee().getFirstName());
+        p.setString(5, task.getShift().getEmployee().getLastName());
+        ResultSet r = p.executeQuery();
+        int id = r.getInt(1);
+
+
+        p = db.prepareStatement("INSERT INTO Tasks (name, shift_id) VALUES (?,?)");
+        p.setString(1, task.getName());
+        p.setInt(2, id);
+        p.executeUpdate();
+    }
 
 }
