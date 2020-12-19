@@ -7,6 +7,7 @@ public class Employee implements Comparable<Employee>  {
     private String role;
 
     /**
+     * Employee constructor
      *
      * @param firstName employee's first name
      * @param lastName employee's last name

@@ -10,6 +10,8 @@ public class Shift implements Comparable<Shift> {
     private Employee employee;
 
     /**
+     * Shift constructor
+     *
      * @param from starting time as hh:mm:ss (hours:minutes:seconds)
      * @param to   leaving time as hh:mm:ss (hours:minutes:seconds)
      * @param date day of the shift as dd:mm:yyyy (days:months:years)
