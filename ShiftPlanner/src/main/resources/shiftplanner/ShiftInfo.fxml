@@ -1,14 +1,173 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import shiftplanner.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="shiftplanner.ShiftInfoController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="480.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shiftplanner.ShiftInfoController">
+   <children>
+      <HBox prefHeight="480.0" prefWidth="1000.0">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="333.0">
+               <children>
+                  <Button fx:id="goBack" mnemonicParsing="false" text="Go back">
+                     <VBox.margin>
+                        <Insets left="5.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shift Info">
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Text>
+                  <HBox prefHeight="23.0" prefWidth="333.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Text fx:id="fromText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="24.0" prefWidth="333.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="toText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="41.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children></HBox>
+                  <HBox prefHeight="37.0" prefWidth="333.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Date:">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="24.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks: ">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ListView fx:id="taskList" prefHeight="264.0" prefWidth="325.0">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="10.0" />
+                     </VBox.margin>
+                  </ListView>
+                  <Button mnemonicParsing="false" text="Delete task">
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="20.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="333.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Add Tasks to shift">
+                     <VBox.margin>
+                        <Insets left="20.0" top="200.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="taskField">
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="40.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="addTaskButton" mnemonicParsing="false" text="Add">
+                     <VBox.margin>
+                        <Insets left="20.0" top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <VBox prefHeight="200.0" prefWidth="333.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Shift">
+                     <VBox.margin>
+                        <Insets left="20.0" top="200.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="From:">
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin></Text>
+                  <TimeSpinner fx:id="fromTime">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin></TimeSpinner>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="To:">
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin></Text>
+                  <TimeSpinner fx:id="toTime">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin></TimeSpinner>
+                  <Button mnemonicParsing="false" text="Edit">
+                     <VBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete Shift">
+                     <VBox.margin>
+                        <Insets left="200.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
 </AnchorPane>

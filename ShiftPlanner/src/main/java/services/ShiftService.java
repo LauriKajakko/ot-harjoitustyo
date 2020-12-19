@@ -15,6 +15,12 @@ public class ShiftService {
         this.shiftDao = shiftDao;
     }
 
+    /**
+     * Gets all shifts by employee
+     *
+     * @param employee whose shifts are needed
+     * @return arraylist of shifts
+     */
     public ArrayList<Shift> getShiftsByEmployee(Employee employee) {
         ArrayList<Shift> shiftsByEmployee = new ArrayList<>();
         try {
@@ -25,6 +31,11 @@ public class ShiftService {
         return shiftsByEmployee;
     }
 
+    /**
+     * Adds a shift to database using dao
+     *
+     * @param shift to add
+     */
     public void addShift(Shift shift) {
         try {
             shiftDao.addShift(shift);

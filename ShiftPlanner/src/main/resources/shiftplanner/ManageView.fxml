@@ -144,7 +144,11 @@
             </padding>
             <Label text="Shifts" />
             <ListView fx:id="shiftListView" prefHeight="345.0" prefWidth="247.0" VBox.vgrow="ALWAYS" />
-         <Button fx:id="shiftInfoButton" mnemonicParsing="false" text="Shift info" />
+         <Button fx:id="shiftInfoButton" mnemonicParsing="false" text="See shift">
+            <VBox.margin>
+               <Insets />
+            </VBox.margin>
+         </Button>
         </VBox>
     </HBox>
 

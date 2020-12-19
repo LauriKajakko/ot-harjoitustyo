@@ -21,10 +21,11 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("ManageView"), 640, 480);
+        scene = new Scene(loadFXML("ManageView"), 1000, 480);
         stage.setScene(scene);
         stage.sizeToScene();
         stage.show();
+
         stage.setMinWidth(1000);
         stage.setMinHeight(480);
     }
@@ -38,13 +39,13 @@ public class App extends Application {
         setRoot("EmployeeInfo");
     }
 
+    static Employee getEmployee() {
+        return employeeForInfo;
+    }
+
     static void setShiftRoot(Shift shift) throws IOException {
         shiftForInfo = shift;
         setRoot("ShiftInfo");
-    }
-
-    static Employee getEmployee() {
-        return employeeForInfo;
     }
 
     static Shift getShift() {

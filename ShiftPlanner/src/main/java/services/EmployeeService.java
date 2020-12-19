@@ -20,16 +20,30 @@ public class EmployeeService {
         this.shiftDao = shiftDao;
     }
 
+    /**
+     * Gets all employees
+     *
+     * @return all employees as ArrayList
+     */
     public ArrayList<Employee> getAll() {
         ArrayList<Employee> employees = new ArrayList<>();
         try {
             employees = employeeDao.getAll();
-        } catch (SQLException throwables) {
+        } catch (Exception e) {
             // :D
         }
         return employees;
     }
 
+    /**
+     *
+     * Gets latest added workdays of selected employee. Returns a pair of day and worked minutes in a table.
+     * If there is less workdays than queried then it return empty strings for remaining indexes.
+     *
+     * @param employee whos
+     * @param days
+     * @return String[][] where first is days and then at index 0 the date and index 1 the minutes worked
+     */
     public String[][] getLastWorkDays(Employee employee, int days) {
         ArrayList<Shift> shifts = new ArrayList<>();
         try {
@@ -64,6 +78,11 @@ public class EmployeeService {
         return result;
     }
 
+    /**
+     * Adds an employee to database
+     *
+     * @param employee to add
+     */
     public void addEmployee(Employee employee) {
         try {
             employeeDao.addNew(employee);
@@ -72,14 +91,4 @@ public class EmployeeService {
         }
     }
 
-    public Employee getByName(String firstname, String lastname) {
-        Employee e = new Employee("0", "0", "0");
-        try {
-            e = employeeDao.getByName(firstname, lastname);
-        } catch (SQLException throwables) {
-
-        }
-        return e;
-
-    }
 }

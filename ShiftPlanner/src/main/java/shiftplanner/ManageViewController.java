@@ -63,9 +63,9 @@ public class ManageViewController implements Initializable {
         initDaos();
         initServices();
         initChoiceBox();
+        initInfoButtons();
         initAddShiftForm();
         initAddEmployeeForm();
-        initInfoButtons();
     }
 
     public void initDaos() {
@@ -147,13 +147,11 @@ public class ManageViewController implements Initializable {
     public void initInfoButtons() {
         employeeInfoButton.setOnAction(actionEvent -> {
             try {
-                System.out.println(choiceBox.getValue());
                 App.setEmployeeRoot(choiceBox.getValue());
             } catch (IOException e) {
 
             }
         });
-
         shiftInfoButton.setOnAction(actionEvent -> {
             try {
                 App.setShiftRoot(shiftListView.getSelectionModel().getSelectedItem());
