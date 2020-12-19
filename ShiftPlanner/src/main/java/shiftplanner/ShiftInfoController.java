@@ -130,7 +130,7 @@ public class ShiftInfoController implements Initializable {
             fromText.setText(shift.getFrom());
             toText.setText(shift.getTo());
             dateText.setText(shift.getDate());
-        } catch (Exception e){
+        } catch (NullPointerException e){
 
         }
     }

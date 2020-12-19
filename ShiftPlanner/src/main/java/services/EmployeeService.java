@@ -29,7 +29,7 @@ public class EmployeeService {
         ArrayList<Employee> employees = new ArrayList<>();
         try {
             employees = employeeDao.getAll();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             // :D
         }
         return employees;
@@ -49,7 +49,7 @@ public class EmployeeService {
         try {
             shifts = shiftDao.getShiftsByEmployee(employee);
             Collections.reverse(shifts);
-        } catch (Exception throwables) {
+        } catch (SQLException throwables) {
         }
         //First minutes then day
         String[][] result = new String[days][2];
@@ -86,7 +86,7 @@ public class EmployeeService {
     public void addEmployee(Employee employee) {
         try {
             employeeDao.addNew(employee);
-        } catch (Exception throwables) {
+        } catch (SQLException throwables) {
 
         }
     }
