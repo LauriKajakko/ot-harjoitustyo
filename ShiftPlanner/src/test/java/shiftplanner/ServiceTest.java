@@ -70,6 +70,27 @@ public class ServiceTest {
         assertEquals(l.get(1).toString(), new Shift("8:00" , "16:00", "02-03-2020", new Employee("lauri", "kajakko", "ceo")).toString());
     }
 
+    @Test
+    public void deletingShiftWorks() {
+        //TODO
+    }
+
+    @Test
+    public void editingShiftWorks() {
+        //TODO
+    }
+
+    @Test
+    public void addingTaskWorks() {
+        //TODO
+    }
+
+    @Test
+    public void deletingTaskWorks() {
+        //TODO
+    }
+    
+
     @After
     public void tearDown() throws SQLException {
         db.delete();
