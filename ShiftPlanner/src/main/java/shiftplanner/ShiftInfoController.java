@@ -126,9 +126,13 @@ public class ShiftInfoController implements Initializable {
     }
 
     public void initShiftInfo() {
-        fromText.setText(shift.getFrom());
-        toText.setText(shift.getTo());
-        dateText.setText(shift.getDate());
+        try {
+            fromText.setText(shift.getFrom());
+            toText.setText(shift.getTo());
+            dateText.setText(shift.getDate());
+        } catch (Exception e){
+
+        }
     }
 
     public void initBackButton() {

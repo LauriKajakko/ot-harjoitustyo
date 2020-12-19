@@ -39,7 +39,7 @@ public class ShiftService {
     public void addShift(Shift shift) {
         try {
             shiftDao.addShift(shift);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
             
         }
     }
@@ -55,7 +55,7 @@ public class ShiftService {
     public void editShift(Shift shift, String newFrom, String newTo) {
         try {
             shiftDao.editShift(shift, newFrom, newTo);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
 
         }
     }
@@ -68,7 +68,7 @@ public class ShiftService {
     public void deleteShift(Shift shift) {
         try {
             shiftDao.deleteShift(shift);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
 
         }
     }

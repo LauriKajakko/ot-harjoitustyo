@@ -49,7 +49,7 @@ public class EmployeeService {
         try {
             shifts = shiftDao.getShiftsByEmployee(employee);
             Collections.reverse(shifts);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
         }
         //First minutes then day
         String[][] result = new String[days][2];
@@ -86,7 +86,7 @@ public class EmployeeService {
     public void addEmployee(Employee employee) {
         try {
             employeeDao.addNew(employee);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
 
         }
     }

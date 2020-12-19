@@ -19,7 +19,7 @@ public class TaskService {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
             tasks = taskDao.getTasksByShift(shift);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
         }
         return tasks;
     }
@@ -27,7 +27,7 @@ public class TaskService {
     public void deleteTasksByShift(Shift shift) {
         try {
             taskDao.deleteTasksByShift(shift);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
 
         }
     }
@@ -35,7 +35,7 @@ public class TaskService {
     public void addTask(Task task) {
         try {
             taskDao.addTask(task);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
 
         }
     }
@@ -43,7 +43,7 @@ public class TaskService {
     public void deleteTask(Task task) {
         try {
             taskDao.deleteTask(task);
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
 
         }
     }
