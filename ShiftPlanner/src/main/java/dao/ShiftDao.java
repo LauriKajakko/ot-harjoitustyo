@@ -62,4 +62,40 @@ public class ShiftDao {
         p.setInt(4, employeeId);
         p.executeUpdate();
     }
+
+    /**
+     * Edits the time of the shift in the DB
+     *
+     * @param shift to edit
+     * @param newFrom new beginning time
+     * @param newTo new end time
+     * @throws SQLException
+     */
+    public void editShift(Shift shift, String newFrom, String newTo) throws SQLException {
+        p = db.prepareStatement("UPDATE Shifts SET fromtime=(?), totime=(?) WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) )");
+        p.setString(1, newFrom);
+        p.setString(2, newTo);
+        p.setString(3, shift.getFrom());
+        p.setString(4, shift.getTo());
+        p.setString(5, shift.getDate());
+        p.setString(6, shift.getEmployee().getFirstName());
+        p.setString(7, shift.getEmployee().getLastName());
+        p.executeUpdate();
+    }
+
+    /**
+     * Deletes the shift from DB
+     *
+     * @param shift to delete
+     * @throws SQLException
+     */
+    public void deleteShift(Shift shift) throws SQLException {
+        p = db.prepareStatement("DELETE FROM Shifts WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) )");
+        p.setString(1, shift.getFrom());
+        p.setString(2, shift.getTo());
+        p.setString(3, shift.getDate());
+        p.setString(4, shift.getEmployee().getFirstName());
+        p.setString(5, shift.getEmployee().getLastName());
+        p.executeUpdate();
+    }
 }

@@ -20,7 +20,7 @@ public class TaskService {
         try {
             tasks = taskDao.getTasksByShift(shift);
         } catch (SQLException throwables) {
-            // :D
+
         }
         return tasks;
     }

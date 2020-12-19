@@ -4,21 +4,14 @@ import dao.Database;
 import dao.EmployeeDao;
 import dao.ShiftDao;
 import dao.TaskDao;
-import domain.Employee;
+import domain.Shift;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import services.EmployeeService;
 import services.ShiftService;
 import services.TaskService;
-import shiftplanner.App;
-import utils.Conversions;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +21,8 @@ import java.util.ResourceBundle;
 
 public class ShiftInfoController implements Initializable {
 
+    Shift shift;
+
     EmployeeDao employeeDao;
     ShiftDao shiftDao;
     TaskDao taskDao;
@@ -36,16 +31,27 @@ public class ShiftInfoController implements Initializable {
     ShiftService shiftService;
     TaskService taskService;
 
+    public Text fromText;
+    public Text toText;
+    public Text dateText;
 
-    @FXML
     public Button goBack;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        shift = App.getShift();
         initDaos();
         initServices();
         initButton();
+        initShiftInfo();
+    }
+
+    public void initShiftInfo() {
+        System.out.println("initshiftinfo: " + shift.getTo());
+        fromText.setText(shift.getFrom());
+        toText.setText(shift.getTo());
+        dateText.setText(shift.getDate());
     }
 
     public void initButton() {

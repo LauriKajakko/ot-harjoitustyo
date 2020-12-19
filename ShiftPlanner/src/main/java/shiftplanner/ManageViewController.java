@@ -154,9 +154,10 @@ public class ManageViewController implements Initializable {
         });
         shiftInfoButton.setOnAction(actionEvent -> {
             try {
+                System.out.println(shiftListView.getSelectionModel().getSelectedItem());
                 App.setShiftRoot(shiftListView.getSelectionModel().getSelectedItem());
             } catch (IOException e) {
-
+                e.printStackTrace();
             }
         });
     }

@@ -26,7 +26,7 @@ public class ShiftService {
         try {
             shiftsByEmployee = shiftDao.getShiftsByEmployee(employee);
         } catch (SQLException throwables) {
-            // :D
+
         }
         return shiftsByEmployee;
     }
@@ -41,6 +41,35 @@ public class ShiftService {
             shiftDao.addShift(shift);
         } catch (SQLException throwables) {
             
+        }
+    }
+
+
+    /**
+     *  Service for editing a shifts time
+     *
+     * @param shift to edit
+     * @param newFrom new beginning time
+     * @param newTo new ending time
+     */
+    public void editShift(Shift shift, String newFrom, String newTo) {
+        try {
+            shiftDao.editShift(shift, newFrom, newTo);
+        } catch (SQLException throwables) {
+
+        }
+    }
+
+    /**
+     * Service for deleting shift
+     *
+     * @param shift to delete
+     */
+    public void deleteShift(Shift shift) {
+        try {
+            shiftDao.deleteShift(shift);
+        } catch (SQLException throwables) {
+
         }
     }
 

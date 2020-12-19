@@ -30,7 +30,7 @@ public class EmployeeInfoController implements Initializable {
     EmployeeService employeeService;
     Conversions conversions;
 
-    @FXML
+
     public BarChart<String, Number> hourChart;
     public Text employeeName;
     public Text employeeLastname;
