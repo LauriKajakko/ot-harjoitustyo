@@ -29,7 +29,15 @@ public class TaskService {
         try {
             taskDao.addTask(task);
         } catch (SQLException throwables) {
-            
+
+        }
+    }
+
+    public void deleteTask(Task task) {
+        try {
+            taskDao.deleteTask(task);
+        } catch (SQLException throwables) {
+
         }
     }
 }
