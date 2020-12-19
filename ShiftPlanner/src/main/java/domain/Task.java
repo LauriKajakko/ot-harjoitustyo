@@ -25,6 +25,11 @@ public class Task implements Comparable<Task> {
         return shift;
     }
 
+    @Override
+    public String toString() {
+        return this.name;
+    }
+
     /**
      * Compares tasks and returns 0 if they are the same
      *

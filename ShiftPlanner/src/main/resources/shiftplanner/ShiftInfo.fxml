@@ -95,7 +95,7 @@
                         <Font size="18.0" />
                      </font>
                   </Text>
-                  <ListView fx:id="taskList" prefHeight="264.0" prefWidth="325.0">
+                  <ListView fx:id="taskListView" prefHeight="264.0" prefWidth="325.0">
                      <VBox.margin>
                         <Insets bottom="20.0" left="20.0" right="10.0" />
                      </VBox.margin>

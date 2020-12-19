@@ -4,19 +4,18 @@ import dao.Database;
 import dao.EmployeeDao;
 import dao.ShiftDao;
 import dao.TaskDao;
-import org.junit.Before;
+import org.junit.*;
 import domain.Employee;
 import domain.Shift;
 import domain.Task;
 import org.junit.Before;
-import org.junit.After;
-import org.junit.Test;
 import services.EmployeeService;
 import services.ShiftService;
 import services.TaskService;
 import utils.Conversions;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.sql.Array;
 import java.sql.Connection;
@@ -121,6 +120,18 @@ public class ShiftplannerTest {
         assertEquals(1, taskService.getTasksByShift(new Shift("8:00", "16:00", "02-02-2020", employeeOne)).size());
         taskService.deleteTask(exp);
         assertEquals(0, taskService.getTasksByShift(new Shift("8:00", "16:00", "02-02-2020", employeeOne)).size());
+    }
+
+    @Test
+    public void deletingAllShiftsTasksWorks() {
+        Shift s = new Shift("8:00" , "16:00", "02-02-2020", employeeOne);
+        Task exp = new Task("clean up", s);
+        taskService.addTask(exp);
+        taskService.addTask(exp);
+        taskService.addTask(exp);
+        taskService.deleteTasksByShift(s);
+        assertTrue(taskService.getTasksByShift(s).isEmpty());
+
     }
 
     @Test

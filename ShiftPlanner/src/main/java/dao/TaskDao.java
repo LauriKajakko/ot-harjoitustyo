@@ -39,6 +39,16 @@ public class TaskDao {
         return tasks;
     }
 
+    public void deleteTasksByShift(Shift shift) throws SQLException {
+        p = db.prepareStatement("DELETE FROM Tasks WHERE shift_id=(SELECT id FROM Shifts WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) ))");
+        p.setString(1, shift.getFrom());
+        p.setString(2, shift.getTo());
+        p.setString(3, shift.getDate());
+        p.setString(4, shift.getEmployee().getFirstName());
+        p.setString(5, shift.getEmployee().getLastName());
+        p.executeUpdate();
+    }
+
     public void addTask(Task task) throws SQLException {
         p = db.prepareStatement("SELECT id FROM Shifts WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) )");
         p.setString(1, task.getShift().getFrom());

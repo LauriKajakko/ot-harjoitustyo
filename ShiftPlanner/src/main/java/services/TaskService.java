@@ -20,9 +20,16 @@ public class TaskService {
         try {
             tasks = taskDao.getTasksByShift(shift);
         } catch (SQLException throwables) {
-
         }
         return tasks;
+    }
+
+    public void deleteTasksByShift(Shift shift) {
+        try {
+            taskDao.deleteTasksByShift(shift);
+        } catch (SQLException throwables) {
+
+        }
     }
 
     public void addTask(Task task) {
