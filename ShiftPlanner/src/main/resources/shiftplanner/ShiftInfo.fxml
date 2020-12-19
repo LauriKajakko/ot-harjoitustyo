@@ -100,7 +100,7 @@
                         <Insets bottom="20.0" left="20.0" right="10.0" />
                      </VBox.margin>
                   </ListView>
-                  <Button mnemonicParsing="false" text="Delete task">
+                  <Button fx:id="deleteTaskButton" mnemonicParsing="false" text="Delete task">
                      <VBox.margin>
                         <Insets bottom="10.0" left="20.0" />
                      </VBox.margin>
@@ -155,12 +155,12 @@
                      <VBox.margin>
                         <Insets left="20.0" />
                      </VBox.margin></TimeSpinner>
-                  <Button mnemonicParsing="false" text="Edit">
+                  <Button fx:id="editShiftButton" mnemonicParsing="false" text="Edit">
                      <VBox.margin>
                         <Insets left="20.0" top="10.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete Shift">
+                  <Button fx:id="deleteShiftButton" mnemonicParsing="false" text="Delete Shift">
                      <VBox.margin>
                         <Insets left="200.0" top="50.0" />
                      </VBox.margin>

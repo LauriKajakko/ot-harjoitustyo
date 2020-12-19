@@ -14,8 +14,9 @@ import org.junit.Test;
 import services.EmployeeService;
 import services.ShiftService;
 import services.TaskService;
+import utils.Conversions;
+
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.sql.Array;
 import java.sql.Connection;
@@ -90,7 +91,7 @@ public class ShiftplannerTest {
         ArrayList<Shift> result = shiftService.getShiftsByEmployee(employeeOne);
 
         assertEquals(expected.size(), result.size());
-        assertTrue(expected.get(expected.size()-1).compareTo(result.get(result.size()-1)) == 0);
+        assertEquals(0, expected.get(expected.size() - 1).compareTo(result.get(result.size() - 1)));
     }
 
 
@@ -101,8 +102,8 @@ public class ShiftplannerTest {
         shiftService.editShift(s, "00:00", "12:34");
         Shift result = shiftService.getShiftsByEmployee(employeeOne).get(0);
 
-        assertTrue(result.getFrom().equals("00:00"));
-        assertTrue(result.getTo().equals("12:34"));
+        assertEquals("00:00", result.getFrom());
+        assertEquals("12:34", result.getTo());
     }
 
     @Test
@@ -110,26 +111,85 @@ public class ShiftplannerTest {
         Task exp = new Task("clean up", new Shift("8:00" , "16:00", "02-02-2020", employeeOne));
         taskService.addTask(exp);
         Task res = taskService.getTasksByShift(new Shift("8:00" , "16:00", "02-02-2020", employeeOne)).get(0);
-        assertTrue(exp.compareTo(res) == 0);
+        assertEquals(0, exp.compareTo(res));
     }
 
     @Test
     public void deletingTaskWorks() {
         Task exp = new Task("clean up", new Shift("8:00" , "16:00", "02-02-2020", employeeOne));
         taskService.addTask(exp);
-        assertTrue(taskService.getTasksByShift(new Shift("8:00" , "16:00", "02-02-2020", employeeOne)).size()==1);
+        assertEquals(1, taskService.getTasksByShift(new Shift("8:00", "16:00", "02-02-2020", employeeOne)).size());
         taskService.deleteTask(exp);
-        assertTrue(taskService.getTasksByShift(new Shift("8:00" , "16:00", "02-02-2020", employeeOne)).size() == 0);
+        assertEquals(0, taskService.getTasksByShift(new Shift("8:00", "16:00", "02-02-2020", employeeOne)).size());
     }
 
     @Test
     public void comparingEmployeesReturnsZeroOrMinusOne() {
         Employee e = new Employee("lauri", "kajakko", "ceo");
-        assertTrue(e.compareTo(employeeOne) == 0);
+        assertEquals(0, e.compareTo(employeeOne));
         Employee e2 = new Employee("lauri", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "ceo");
-        assertTrue(e2.compareTo(employeeOne) == -1);
+        assertEquals(e2.compareTo(employeeOne), -1);
     }
 
+    @Test
+    public void minutesToHoursWorks() {
+        Conversions c = new Conversions();
+        assertEquals(2, c.minutesToHours("120"), 0.0);
+        assertEquals(1.5, c.minutesToHours("90"), 0.0);
+    }
+
+    @Test
+    public void setEmployeeWorks() {
+        Employee e = new Employee("erkki", "edimeksei", "cleaner");
+        Employee e2 = new Employee("erkki", "esimerkki", "cleaner");
+        Shift s = new Shift("11:11", "12:12", "01-01-2020", e);
+        s.setEmployee(e2);
+        assertEquals(0, s.getEmployee().compareTo(e2));
+    }
+
+    @Test
+    public void getLastWorkDaysReturnLatestAdded() {
+        String[][] res = employeeService.getLastWorkDays(employeeOne, 6);
+        assertEquals(res[0][0], Integer.toString(8 * 60));
+    }
+
+    @Test
+    public void comparisonsWorkWithEmployee() {
+        Employee e = new Employee("a", "kajakko", "ceo");
+        Employee e2 = new Employee("lauri", "a", "ceo");
+        Employee e3 = new Employee("lauri", "kajakko", "a");
+
+        assertEquals(e.compareTo(employeeOne), -1);
+        assertEquals(e2.compareTo(employeeOne), -1);
+        assertEquals(e3.compareTo(employeeOne), -1);
+    }
+
+    @Test
+    public void comparisonsWorkWithTask() {
+        Shift s = new Shift("18:00", "19:00", "02-02-2012", employeeOne);
+        Shift s2 = new Shift("10:00", "19:00", "02-02-2012", employeeOne);
+
+        Task t = new Task("do stuff", s);
+        Task t2 = new Task("do other stuff", s);
+        Task t3 = new Task("do stuff", s2);
+        assertEquals(t.compareTo(t2), -1);
+        assertEquals(t.compareTo(t3), -1);
+    }
+
+    @Test
+    public void comparisonsWorkWithShifts() {
+        Shift s = new Shift("18:00", "19:00", "02-02-2012", employeeOne);
+        Shift s2 = new Shift("10:00", "19:00", "02-02-2012", employeeOne);
+        Shift s3 = new Shift("18:00", "10:00", "02-02-2012", employeeOne);
+        Shift s4 = new Shift("18:00", "19:00", "01-02-2012", employeeOne);
+        Shift s5 = new Shift("18:00", "19:00", "02-02-2012", new Employee("a", "a", "a"));
+
+        assertEquals(s.compareTo(s2), -1);
+        assertEquals(s.compareTo(s3), -1);
+        assertEquals(s.compareTo(s4), -1);
+        assertEquals(s.compareTo(s5), -1);
+        assertEquals(0, s.compareTo(s));
+    }
 
     @After
     public void tearDown() throws SQLException {

@@ -5,9 +5,11 @@ import dao.EmployeeDao;
 import dao.ShiftDao;
 import dao.TaskDao;
 import domain.Shift;
+import domain.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import services.EmployeeService;
 import services.ShiftService;
@@ -35,6 +37,17 @@ public class ShiftInfoController implements Initializable {
     public Text toText;
     public Text dateText;
 
+    public TimeSpinner fromTime;
+    public TimeSpinner toTime;
+
+    public Button addTaskButton;
+    public Button editShiftButton;
+    public Button deleteShiftButton;
+    public Button deleteTaskButton;
+
+    public TextField taskField;
+
+
     public Button goBack;
 
 
@@ -45,6 +58,14 @@ public class ShiftInfoController implements Initializable {
         initServices();
         initButton();
         initShiftInfo();
+        initEditForm();
+    }
+
+    public void initEditForm() {
+        addTaskButton.setOnAction(actionEvent -> {
+            String taskName = taskField.getCharacters().toString();
+            taskService.addTask(new Task(taskName, shift));
+        });
     }
 
     public void initShiftInfo() {

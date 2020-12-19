@@ -29,7 +29,7 @@ public class Task implements Comparable<Task> {
      * Compares tasks and returns 0 if they are the same
      *
      * @param task
-     * @return 0 if same -1 if different 
+     * @return 0 if same -1 if different
      */
     @Override
     public int compareTo(Task task) {
