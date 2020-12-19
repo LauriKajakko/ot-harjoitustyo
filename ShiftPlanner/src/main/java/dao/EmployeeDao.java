@@ -38,17 +38,6 @@ public class EmployeeDao {
         return employees;
     }
 
-    public Employee getByName(String first, String last) throws SQLException {
-        p = db.prepareStatement("SELECT * FROM Employees WHERE firstname=(?) AND lastname=(?)");
-        p.setString(1, first);
-        p.setString(2, last);
-        ResultSet r = p.executeQuery();
-
-        Employee employee = new Employee(r.getString("firstname"), r.getString("lastname"), r.getString("role"));
-
-        return employee;
-    }
-
     /**
      *
      * Adds employee to database

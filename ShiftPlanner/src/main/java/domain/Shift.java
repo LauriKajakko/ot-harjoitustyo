@@ -2,7 +2,7 @@ package domain;
 
 import java.util.ArrayList;
 
-public class Shift {
+public class Shift implements Comparable<Shift> {
 
     private String from;
     private String to;
@@ -15,7 +15,7 @@ public class Shift {
      * @param date day of the shift as dd:mm:yyyy (days:months:years)
      * @param employee who is working this shift
      */
-    public Shift(String from, String to, String date, Employee employee) {
+    public Shift(String from, String to, String date, Employee employee)  {
         this.from = from;
         this.to = to;
         this.date = date;
@@ -31,24 +31,12 @@ public class Shift {
         return from;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
     public String getTo() {
         return to;
     }
 
-    public void setTo(String to) {
-        this.to = to;
-    }
-
     public String getDate() {
         return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public Employee getEmployee() {
@@ -57,5 +45,13 @@ public class Shift {
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    @Override
+    public int compareTo(Shift shift) {
+        if (this.getTo().equals(shift.getTo()) && this.getFrom().equals(shift.getFrom()) && this.getDate().equals(shift.getDate()) && this.getEmployee().equals(shift.getEmployee())) {
+            return 0;
+        }
+        return -1;
     }
 }

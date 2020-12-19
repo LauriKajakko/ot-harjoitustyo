@@ -1,6 +1,6 @@
 package domain;
 
-public class Task {
+public class Task implements Comparable<Task> {
 
     private String name;
     private Shift shift;
@@ -18,4 +18,11 @@ public class Task {
         return shift;
     }
 
+    @Override
+    public int compareTo(Task task) {
+        if (this.name.equals(task.name) && this.shift.compareTo(task.shift) == 0) {
+            return 0;
+        }
+        return -1;
+    }
 }

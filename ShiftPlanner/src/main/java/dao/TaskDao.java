@@ -49,7 +49,6 @@ public class TaskDao {
         ResultSet r = p.executeQuery();
         int id = r.getInt(1);
 
-
         p = db.prepareStatement("INSERT INTO Tasks (name, shift_id) VALUES (?,?)");
         p.setString(1, task.getName());
         p.setInt(2, id);
@@ -57,7 +56,7 @@ public class TaskDao {
     }
 
     public void deleteTask(Task task) throws SQLException {
-        p = db.prepareStatement("DELETE FROM Tasks WHERE name=(?) AND shift_id=(SELECT id FROM Shifts WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) )");
+        p = db.prepareStatement("DELETE FROM Tasks WHERE name=(?) AND shift_id=(SELECT id FROM Shifts WHERE fromtime=(?) AND totime=(?) AND date=(?) AND employee_id=(SELECT id FROM Employees WHERE firstname=(?) AND lastname=(?) ))");
         p.setString(1, task.getName());
         p.setString(2, task.getShift().getFrom());
         p.setString(3, task.getShift().getTo());
