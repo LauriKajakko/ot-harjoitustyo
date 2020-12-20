@@ -20,7 +20,7 @@ Application for managing employees and work shifts.
 
 [week 6](https://github.com/LauriKajakko/ot-harjoitustyo/releases/tag/v1.1)
 
-[Final](https://github.com/LauriKajakko/ot-harjoitustyo/releases/tag/1)
+[Final](https://github.com/LauriKajakko/ot-harjoitustyo/releases/tag/final)
 
 ## Command Line
 
