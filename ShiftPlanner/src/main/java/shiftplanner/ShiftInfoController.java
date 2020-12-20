@@ -99,6 +99,7 @@ public class ShiftInfoController implements Initializable {
             Task task = new Task(taskName, shift);
             taskService.addTask(task);
             setTasksToListView();
+            taskField.clear();
         });
     }
 
