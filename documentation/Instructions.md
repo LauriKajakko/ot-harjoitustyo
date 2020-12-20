@@ -18,7 +18,7 @@ You can fill a form to add an employee
 
 <img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/Screenshot%20from%202020-12-20%2015-45-03.png/>
 
-Then you're able to add some shifts for her
+Then you're able to add some shifts 
 
 <img src=https://github.com/LauriKajakko/ot-harjoitustyo/blob/main/documentation/images/Screenshot%20from%202020-12-20%2015-45-36.png />
 
