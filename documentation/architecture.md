@@ -19,6 +19,10 @@ Has two views
   * Employee info
     * Info about the employee selected
     * Bar graph on time worked
+  * Shift info
+    * Edit shift time
+    * Add and remove tasks
+    * See tasks
     
 These two are implemented as separate Scenes and "View and Manage" is the main view that pops up when App is started. UI is implemented using java fxml. The fxml files are in the resources-directory and controllers can be found in shiftplanner package. User Interface has been separated from logic by using service classes.
 
