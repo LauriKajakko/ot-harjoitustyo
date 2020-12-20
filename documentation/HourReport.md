@@ -15,5 +15,7 @@
 | 2.12  | 5            | Everything for the deadliner +controllers and UI|
 |7.12.  | 5            | Made employeeinfo view                    |
 |8.12.  | 7            | Documentation and struggle with configurations  |
-| Total | 46           |                                           | 
+|19.12. | 11           | Made a whole new feature, all tests and GUI|
+|20.12. | 2            | Finishing up documentation                |
+| Total | 59           |                                           | 
 
