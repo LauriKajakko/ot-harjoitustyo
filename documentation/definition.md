@@ -10,15 +10,18 @@ Employer
 
 ## Functionality
 
-* Employers
-  * ability to add __(done)__ and modify shifts 
-  * ability to track how much different tasks have taken time 
-  * ability to add employees __(done)__
-  * ability to manage tasks and mark as done
-  * ability to see shifts of employees __(done)__
+* ability to add and modify shifts 
+* ability to add employees
+* ability to manage tasks
+* ability to see shifts of employees
+* ability to see overview of employee
+  * BarChart of latest shifts 
+  * Employee info
+    * role
+    * name
 
 
-## Scalability
+## Improvement ideas
 
 After the core is done features that can be implemented:
 
@@ -29,6 +32,7 @@ After the core is done features that can be implemented:
   * accumulated holidays
 * Ability to generate automated paychecks
 * Ability to generate automated bills for clients
+* Employers ability to track how much different tasks have taken time 
 
 * Employees own view
   * ability track only their own worktime, shifts and tasks
