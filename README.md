@@ -31,7 +31,7 @@ mvn test
 ```
 
 ```
-mvn jacoco:report
+mvn test jacoco:report
 ```
 
 ```
