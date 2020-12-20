@@ -5,7 +5,6 @@ import dao.ShiftDao;
 import domain.Employee;
 import domain.Shift;
 
-import java.io.StringBufferInputStream;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -55,7 +54,7 @@ public class EmployeeService {
         String[][] result = new String[days][2];
 
         for (int i = 0; i < days; i++) {
-            if (shifts.size()<=i) {
+            if (shifts.size() <= i) {
                 result[i][0] = "0";
                 result[i][1] = "";
                 continue;
@@ -64,7 +63,7 @@ public class EmployeeService {
             int minutes = 0;
             String[] from = shifts.get(i).getFrom().split(":");
             String[] to = shifts.get(i).getTo().split(":");
-            if(from[0] == to[0]){
+            if (from[0] == to[0]) {
                 minutes = Integer.parseInt(to[1]) - Integer.parseInt(from[1]);
             } else {
                 hours = Integer.parseInt(to[0]) - Integer.parseInt(from[0]);
